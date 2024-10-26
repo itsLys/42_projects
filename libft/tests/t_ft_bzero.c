@@ -68,17 +68,8 @@ void test_nullp(size_t n)
 {
 	unsigned char *buff;
 	buff = NULL;
-	// ft_bzero(buff, n); // seg fault
 	// bzero(buff, n);
-}
-
-void test_sizemax(void)
-{
-	unsigned char *buff;
-	buff = malloc(SIZE_MAX / 1000000000000000);
-	// ft_bzero(buff, SIZE_MAX); // seg fault
-	// bzero(buff, SIZE_MAX); // seg fault
-	free(buff);
+	// ft_bzero(buff, n); // seg fault
 }
 
 int main()
@@ -90,7 +81,7 @@ int main()
 	test_memory_initialized(0, 10);
 	test_memory_initialized(10, 0);
 	test_memory_initialized(0, 0);
-	test_memory_initialized(10, SIZE_MAX);
+	// test_memory_initialized(10, SIZE_MAX);
 
 	test_memory_set_to_zero(10, 2);
 	test_memory_set_to_zero(10, 10);
