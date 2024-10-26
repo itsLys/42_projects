@@ -15,9 +15,10 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			dp[n] = sp[n];
 	}
 	else
-	{
+{
 		while (n--)
 			*(dp++) = *(sp++);
 	}
 	return (dest);
 }
+

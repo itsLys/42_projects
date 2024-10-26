@@ -3,6 +3,7 @@
 int	ft_isascii(int c)
 {
 	unsigned char table[255];
+	unsigned char x = c;
 	int	i;
 	i = 0;
 	while (i < 255)
@@ -13,5 +14,5 @@ int	ft_isascii(int c)
 			table[i] = 0;
 		i++;
 	}
-	return (table[c]);
+	return (table[x]);
 }
