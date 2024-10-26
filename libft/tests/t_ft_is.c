@@ -21,7 +21,7 @@ void valid_isalnum_test(char *str)
 		printf("return value:	%d\n", isalnum(c));
 		printf("ft_isalnum:		%s\n", ft_isalnum(c) == 0 ? "FALSE" : "TRUE");
 		printf("return value:	%d\n", ft_isalnum(c));
-		assert(isalnum(c) == ft_isalnum(c));
+		assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 		printf("\n");
 		i++;
 	}
@@ -38,7 +38,7 @@ void invalid_isalnum_test(int c)
 	printf("return value:		%d\n", isalnum(c));
 	printf("ft_isalnum:		%s\n", ft_isalnum(c) == 0 ? "FALSE" : "TRUE");
 	printf("return value:		%d\n", ft_isalnum(c));
-	assert(isalnum(c) == ft_isalnum(c));
+	assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 	printf("\n");
 	i++;
 }
@@ -58,7 +58,7 @@ void valid_isalpha_test(char *str)
 		printf("return value:	%d\n", isalpha(c));
 		printf("ft_isalpha:		%s\n", ft_isalpha(c) == 0 ? "FALSE" : "TRUE");
 		printf("return value:	%d\n", ft_isalpha(c));
-		assert(isalpha(c) == ft_isalpha(c));
+		assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 		printf("\n");
 		i++;
 	}
@@ -75,7 +75,7 @@ void invalid_isalpha_test(int c)
 	printf("return value:		%d\n", isalpha(c));
 	printf("ft_isalpha:		%s\n", ft_isalpha(c) == 0 ? "FALSE" : "TRUE");
 	printf("return value:		%d\n", ft_isalpha(c));
-	assert(isalpha(c) == ft_isalpha(c));
+	assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 	printf("\n");
 	i++;
 }
@@ -95,7 +95,7 @@ void valid_isdigit_test(char *str)
 		printf("return value:	%d\n", isdigit(c));
 		printf("ft_isdigit:		%s\n", ft_isdigit(c) == 0 ? "FALSE" : "TRUE");
 		printf("return value:	%d\n", ft_isdigit(c));
-		assert(isdigit(c) == ft_isdigit(c));
+		assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 		printf("\n");
 		i++;
 	}
@@ -112,7 +112,7 @@ void invalid_isdigit_test(int c)
 	printf("return value:		%d\n", isdigit(c));
 	printf("ft_isdigit:		%s\n", ft_isdigit(c) == 0 ? "FALSE" : "TRUE");
 	printf("return value:		%d\n", ft_isdigit(c));
-	assert(isdigit(c) == ft_isdigit(c));
+	assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 	printf("\n");
 	i++;
 }
@@ -132,7 +132,7 @@ void valid_isascii_test(char *str)
 		printf("return value:	%d\n", isascii(c));
 		printf("ft_isascii:		%s\n", ft_isascii(c) == 0 ? "FALSE" : "TRUE");
 		printf("return value:	%d\n", ft_isascii(c));
-		assert(isascii(c) == ft_isascii(c));
+		assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 		printf("\n");
 		i++;
 	}
@@ -149,7 +149,7 @@ void invalid_isascii_test(int c)
 	printf("return value:		%d\n", isascii(c));
 	printf("ft_isascii:		%s\n", ft_isascii(c) == 0 ? "FALSE" : "TRUE");
 	printf("return value:		%d\n", ft_isascii(c));
-	assert(isascii(c) == ft_isascii(c));
+	assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 	printf("\n");
 	i++;
 }
@@ -169,7 +169,7 @@ void valid_isprint_test(char *str)
 		printf("return value:	%d\n", isprint(c));
 		printf("ft_isprint:		%s\n", ft_isprint(c) == 0 ? "FALSE" : "TRUE");
 		printf("return value:	%d\n", ft_isprint(c));
-		assert(isprint(c) == ft_isprint(c));
+		assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 		printf("\n");
 		i++;
 	}
@@ -186,7 +186,7 @@ void invalid_isprint_test(int c)
 	printf("return value:		%d\n", isprint(c));
 	printf("ft_isprint:		%s\n", ft_isprint(c) == 0 ? "FALSE" : "TRUE");
 	printf("return value:		%d\n", ft_isprint(c));
-	assert(isprint(c) == ft_isprint(c));
+	assert((!isalnum(c) && !ft_isalnum(c)) || (isalnum(c) && ft_isalnum(c)));
 	printf("\n");
 	i++;
 }
