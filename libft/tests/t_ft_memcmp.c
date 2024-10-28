@@ -11,36 +11,54 @@ size_t get_case()
 	return (i++);
 }
 
-void print_arr(void *arr, size_t size)
+void print_arr(const void *arr, size_t size)
 {
 
-	unsigned char *ap;
-	ap = (unsigned char *) arr;
+	const unsigned char *ap;
+	ap = (const unsigned char *) arr;
 	while (size--)
 	{
-		printf("%x, ", *(ap++));
+		printf("%.2x, ", *(ap++));
 	}
 }
 
 void test_same_mem_same_size()
 {
-	char buff1[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
-	char buff2[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
-	void *porig;
-	void *pft;
+	const char buff1[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
+	const char buff2[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
+	int cmp;
+	int ft_cmp;
 	printf("---------------------------\n");
 	printf("case number: %zu\n", get_case());
 	printf("array 1: ");
 	print_arr(buff1, 11);
-	printf("array 1: ");
+	printf("array 2: ");
 	print_arr(buff2, 11);
 	printf("\n");
-	printf("byte to find %xu\n", find[j]);
-	porig = memchr(buff, find[j], 11);
-	pft = ft_memchr(buff, find[j], 11);
-	printf("pointer orig: %p\n", porig);
-	printf("pointer ft: %p\n", pft);
-	assert(porig == pft);
+	cmp = memcmp(buff1, buff2, 11);
+	ft_cmp = ft_memcmp(buff1, buff2, 11);
+	printf("memcmp value: %d\n", cmp);
+	printf("memcmp interpertation: %d\n", cmp);
+	if (cmp > 0)
+		printf("buff1 > buff2\n");
+	else if (cmp < 0)
+		printf("buff1 < buff2\n");
+	else if (cmp == 0)
+		printf("buff1 = equal buff2\n");
+	printf("ft_memcmp value: %d\n", cmp);
+	printf("memft_cmp interpertation: %d\n", ft_cmp);
+	if (ft_cmp > 0)
+		printf("buff1 > buff2\n");
+	else if (ft_cmp < 0)
+		printf("buff1 < buff2\n");
+	else if (ft_cmp == 0)
+		printf("buff1 = equal buff2\n");
+	assert((cmp > 0 && ft_cmp > 0) || (cmp < 0 && ft_cmp < 0) || (!cmp && !ft_cmp));
 	printf("\n");
-	j++;
 }
+
+int main()
+{
+	test_same_mem_same_size();
+}
+
