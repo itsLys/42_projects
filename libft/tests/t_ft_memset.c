@@ -68,8 +68,8 @@ int main()
     test_mem_set(src0, 5, byte);
     test_mem_set(src0, 1, byte);
     test_mem_set(src0, 0, byte);
-    // const char *srcnull = NULL;
-    // test_mem_set(srcnull, 11);
+    // char *srcnull = NULL;
+    // test_mem_set(srcnull, 11, byte);
     // test_mem_set(srcnull, 5);
     // test_mem_set(srcnull, 1);
     // test_mem_set(srcnull, 0);
