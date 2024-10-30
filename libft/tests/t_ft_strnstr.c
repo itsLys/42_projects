@@ -47,9 +47,12 @@ int main()
     test_strnstr("World, Hello	", "Hello ", 100);
     test_strnstr("Hello, World", "Hello", 4);
     test_strnstr("Hello", "e", 2);
+    test_strnstr("Hello", "el", 2);
     test_strnstr("Hello", "e", 1);
     test_strnstr("Hello", "o", 100);
     test_strnstr("Hello", "H", 100);
     test_strnstr("Hello", "H", 0);
     test_strnstr("", "", 100);
+    test_strnstr("Hello", "lo", 4);
+    test_strnstr("Hello, World", "Worl", 10);
 }
