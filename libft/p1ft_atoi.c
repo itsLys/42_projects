@@ -7,6 +7,25 @@ static int ft_isspace(char c)
     return (0);
 }
 
+static const char *skip_spaces(const char *nptr)
+{
+    while (*nptr && ft_isspace(*nptr))
+        nptr++;
+    return (nptr);
+}
+
+static const char *resolve_sign(const char *nptr, int *sign)
+{
+    *sign = 1;
+    if (*nptr && (*nptr == '-' || *nptr == '+'))
+    {
+        if (*nptr == '-')
+            *sign = -(*sign);
+        nptr++;
+    }
+    return (nptr);
+}
+
 int ft_atoi(const char *nptr)
 {
     long n;
@@ -14,15 +33,8 @@ int ft_atoi(const char *nptr)
     int sign;
 
     n = 0;
-    sign = 1;
-    while (*nptr && ft_isspace(*nptr))
-        nptr++;
-    if (*nptr && (*nptr == '-' || *nptr == '+'))
-    {
-        if (*nptr == '-')
-            sign = -sign;
-        nptr++;
-    }
+    nptr = skip_spaces(nptr);
+    nptr = resolve_sign(nptr, &sign);
     while (*nptr && ft_isdigit(*nptr))
     {
         prev = n;

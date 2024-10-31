@@ -1,2 +1,6 @@
 libft.h with ar command
 clean up
+check names and prototypes
+go through the man pages
+difference between tab ans spaces, why is space printable while tabular (and others) is not
+static functions, static variables
