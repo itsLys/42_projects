@@ -47,6 +47,8 @@ char *ft_itoa(int n)
     sign = resolve_sign(n, &num);
     chars = count_digits(num);
     str = ft_calloc(chars + (sign < 0) + 1, 1);
+    if (str == NULL)
+        return (NULL);
     if (sign < 0)
     {
         chars++;
