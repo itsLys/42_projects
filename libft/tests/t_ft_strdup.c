@@ -12,8 +12,8 @@ size_t get_case()
 
 void test_strdup(const char *str)
 {
-	char *sdup = strdup(str);
-	char *ft_sdup = ft_strdup(str);
+    char *sdup = strdup(str);
+    char *ft_sdup = ft_strdup(str);
     printf("---------------------------\n");
     printf("case number: 	%zu\n", get_case());
     printf("\n");
@@ -26,14 +26,15 @@ void test_strdup(const char *str)
     printf("ft strdup:	\"%s\"\n", ft_sdup);
     printf("addr		\"%p\"\n", ft_sdup);
     assert(memcmp(sdup, ft_sdup, strlen(str) + 1) == 0);
+    free(sdup);
+    free(ft_sdup);
 }
 
 int main()
 {
 
-	test_strdup("Hello");
-	test_strdup("h");
-	test_strdup("");
-	test_strdup("Hello, How are you");
-
+    test_strdup("Hello");
+    test_strdup("h");
+    test_strdup("");
+    test_strdup("Hello, How are you");
 }

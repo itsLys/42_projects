@@ -22,6 +22,7 @@ void test_itoa(int c, char *exp)
     printf("itoa:			\"%s\"\n", str);
     printf("\n");
     assert(strcmp(str, exp) == 0);
+    free(str);
 }
 
 int main()
