@@ -2,23 +2,25 @@
 
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-    char *substr;
-    size_t i;
-    size_t slen;
+	char *substr;
+	size_t i;
+	size_t slen;
 
-    i = 0;
-    if (!s)
-        return (ft_strdup(""));
-    slen = ft_strlen(s);
-    if (start >= slen)
-        return (ft_strdup(""));
-    // if (len > slen)
-    // 	return (ft_strdup(s + start));
-    substr = ft_calloc(len + 1, 1);
-    if (substr == NULL)
-        return (NULL);
-    ft_strlcpy(substr, s + start, len + 1);
-    return (substr);
+	i = 0;
+	if (!s)
+		return (ft_strdup(""));
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (ft_strdup(""));
+	// if (len > slen)
+	// 	return (ft_strdup(s + start));
+	// 	TODO:
+	//	fix unwanted memory allocation
+	substr = ft_calloc(len + 1, 1);
+	if (substr == NULL)
+		return (NULL);
+	ft_strlcpy(substr, s + start, len + 1);
+	return (substr);
 }
 // strlen 	== 10;
 // len 		== 100;

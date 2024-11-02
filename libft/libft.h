@@ -4,8 +4,8 @@
 #define U_SHRT_MAX 65535
 typedef enum e_bool
 {
-    FALSE,
-    TRUE
+	FALSE,
+	TRUE
 } t_bool;
 int ft_atoi(const char *nptr);
 void ft_bzero(void *s, size_t n);
@@ -36,3 +36,4 @@ int ft_toupper(int c);
 char *ft_itoa(int n);
 char *ft_substr(char const *s, unsigned int start, size_t len);
 char *ft_strjoin(char const *s1, char const *s2);
+char **ft_split(const char *s, char c);

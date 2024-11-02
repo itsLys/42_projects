@@ -2,5 +2,5 @@
 
 int ft_toupper(int c)
 {
-    return (c - ('a' - 'A') * (c >= 'a' && c <= 'z'));
+	return (c - ('a' - 'A') * (c >= 'a' && c <= 'z'));
 }
