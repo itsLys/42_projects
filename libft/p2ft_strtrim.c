@@ -44,6 +44,8 @@ char *ft_strtrim(char const *s1, char const *set)
 
 	if (!s1)
 		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
 
 	s = get_start(s1, set);
 	e = get_end(s1, set);
