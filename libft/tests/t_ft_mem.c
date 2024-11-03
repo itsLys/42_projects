@@ -1,8 +1,8 @@
 #include "../libft.h"
 #include <assert.h>
+#include <ctype.h>
 #include <limits.h>
 #include <stdio.h>
-#include <ctype.h>
 #include <string.h>
 #define SIZE1 10
 #define SIZE2 100
@@ -39,7 +39,7 @@ void print_arr(void *arr, size_t size)
 {
 
 	unsigned char *ap;
-	ap = (unsigned char *) arr;
+	ap = (unsigned char *)arr;
 	while (size--)
 	{
 		printf("%x, ", *(ap++));
@@ -48,7 +48,7 @@ void print_arr(void *arr, size_t size)
 
 void test_memchr_find_existing()
 {
-	char buff[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
+	char buff[] = {'\x00', '\x41', '\x02', '\x01', '\xf0', '\x71', '\xff', '\x7f', '\x09', '\x1f', '\x0f'};
 	char find[] = {'\x00', '\x01', '\xf0', '\xff', '\x7f', '\x1f', '\x0f'};
 	size_t i = 0;
 	size_t j = 0;
@@ -78,7 +78,7 @@ void test_memchr_find_existing()
 
 void test_memchr_find_existing_uc()
 {
-	unsigned char buff[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
+	unsigned char buff[] = {'\x00', '\x41', '\x02', '\x01', '\xf0', '\x71', '\xff', '\x7f', '\x09', '\x1f', '\x0f'};
 	unsigned char find[] = {'\x00', '\x01', '\xf0', '\xff', '\x7f', '\x1f', '\x0f'};
 	size_t i = 0;
 	size_t j = 0;
@@ -108,7 +108,7 @@ void test_memchr_find_existing_uc()
 
 void test_memchr_find_existing_int()
 {
-	unsigned char buff[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
+	unsigned char buff[] = {'\x00', '\x41', '\x02', '\x01', '\xf0', '\x71', '\xff', '\x7f', '\x09', '\x1f', '\x0f'};
 	unsigned char find[] = {'\x00', '\x01', '\xf0', '\xff', '\x7f', '\x1f', '\x0f'};
 	size_t i = 0;
 	size_t j = 0;
@@ -138,7 +138,7 @@ void test_memchr_find_existing_int()
 
 void test_memchr_find_existing_uint()
 {
-	unsigned char buff[] = {'\x00', '\x41','\x02','\x01', '\xf0', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
+	unsigned char buff[] = {'\x00', '\x41', '\x02', '\x01', '\xf0', '\x71', '\xff', '\x7f', '\x09', '\x1f', '\x0f'};
 	unsigned char find[] = {'\x00', '\x01', '\xf0', '\xff', '\x7f', '\x1f', '\x0f'};
 	size_t i = 0;
 	size_t j = 0;
@@ -168,7 +168,7 @@ void test_memchr_find_existing_uint()
 
 void test_memchr_find_nonexisting()
 {
-	char buff[] = {'\x00', '\x41','\xf2','\xf3', '\xf0', '\x71','\xff', '\x7f', '\x09','\x9f', '\xaf'};
+	char buff[] = {'\x00', '\x41', '\xf2', '\xf3', '\xf0', '\x71', '\xff', '\x7f', '\x09', '\x9f', '\xaf'};
 	char find[] = {'\x01', '\x02', '\x30', '\x6f', '\x1f', '\x6f', '\x0f'};
 	size_t i = 0;
 	size_t j = 0;
@@ -198,7 +198,7 @@ void test_memchr_find_nonexisting()
 
 void test_memchr_find_part()
 {
-	char buff[] = {'\x00', '\x41','\x02','\x01', '\xff', '\x71','\xff', '\x7f', '\x09','\x1f', '\x0f'};
+	char buff[] = {'\x00', '\x41', '\x02', '\x01', '\xff', '\x71', '\xff', '\x7f', '\x09', '\x1f', '\x0f'};
 	char find[] = {'\x00', '\x01', '\xf0', '\xff', '\x7f', '\x1f', '\x0f'};
 	size_t i = 0;
 	size_t j = 0;

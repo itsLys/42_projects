@@ -1,9 +1,9 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <limits.h>
-#include <assert.h>
-#include <string.h>
 #include "../libft.h"
+#include <assert.h>
+#include <limits.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
 
 void print_buff(void *buff_orig, void *buff_ft, size_t size)
 {
@@ -23,8 +23,8 @@ void print_buff(void *buff_orig, void *buff_ft, size_t size)
 void test_memory_initialized(size_t size, size_t n)
 {
 	static int case_n = 0;
-	unsigned char *buff_orig = (unsigned char *) malloc(size);
-	unsigned char *buff_ft = (unsigned char *) malloc(size);
+	unsigned char *buff_orig = (unsigned char *)malloc(size);
+	unsigned char *buff_ft = (unsigned char *)malloc(size);
 	size_t i = 0;
 	printf("-------------------\n");
 	printf("------ test case: %d ------\n", case_n++);
@@ -45,8 +45,8 @@ void test_memory_initialized(size_t size, size_t n)
 void test_memory_set_to_zero(size_t size, size_t n)
 {
 	static int case_n = 0;
-	unsigned char *buff_orig = (unsigned char *) malloc(size);
-	unsigned char *buff_ft = (unsigned char *) malloc(size);
+	unsigned char *buff_orig = (unsigned char *)malloc(size);
+	unsigned char *buff_ft = (unsigned char *)malloc(size);
 	size_t i = 0;
 	printf("-------------------\n");
 	printf("------ test case: %d ------\n", case_n++);
@@ -99,4 +99,4 @@ int main()
 // 			MAX_SIZE
 // 			[x] Memory already zeroed
 // 			Non contiguous memory block through pointer arithmetic
-// 
+//

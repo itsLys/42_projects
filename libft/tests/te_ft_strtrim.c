@@ -29,6 +29,8 @@ int main()
 	test_strtrim(" Hello World ", " ", "Hello World");
 	test_strtrim("xyzHello Worldzxy", "yzx", "Hello World");
 	test_strtrim("Hello World", "yzx", "Hello World");
+	test_strtrim("Hello World", "", "Hello World");
+	test_strtrim("Hello World", "Hello World", "");
 	test_strtrim(" Hello World ", " ", "Hello World");
 	test_strtrim("!!Hello World!!", "!", "Hello World");
 	test_strtrim("*Hello*", "*", "Hello");
@@ -50,6 +52,7 @@ int main()
 
 	// Edge cases
 	test_strtrim("", " ", "");		// Empty string
+	test_strtrim("", "", "");		// Empty string
 	test_strtrim(" ", " ", "");		// String with only spaces
 	test_strtrim("     ", " ", ""); // Multiple spaces
 	test_strtrim("!!", "!", "");	// Only characters to trim
