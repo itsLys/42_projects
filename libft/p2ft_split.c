@@ -44,6 +44,14 @@ static size_t get_word_len(const char *s, char c)
 	return len;
 }
 
+static char **free_mem(char **list, size_t i)
+{
+	while (i-- > 0)
+		free(list[i]);
+	free(list);
+	return (NULL);
+}
+
 char **ft_split(char const *s, char c)
 {
 	size_t list_size;
@@ -51,6 +59,8 @@ char **ft_split(char const *s, char c)
 	char *word;
 	size_t i;
 
+	if (s == NULL)
+		return (NULL);
 	i = 0;
 	list_size = count_words(s, c) + 1;
 	list = ft_calloc(list_size, sizeof(char *));
@@ -62,12 +72,7 @@ char **ft_split(char const *s, char c)
 		s = skip_delim(s, c);
 		word = ft_substr(s, 0, get_word_len(s, c));
 		if (!word)
-		{
-			while (i-- > 0)
-				free(list[i]);
-			free(list);
-			return (NULL);
-		}
+			return (free_mem(list, i));
 		list[i++] = word;
 		s = skip_word(s, c);
 	}
@@ -78,12 +83,7 @@ char **ft_split(char const *s, char c)
 //
 // NOTE:
 //	what is const char * vs const char
-
-//	"Hello World"
-//	count words
-//	allocate char * x word count
 //
-//	dp**;
-//	dp[1] = "Hello"
-//	dp[2] = "World"
-//	dp[3] = NULL;
+//	"ddddddddddddddd"
+//	""
+//	'd'

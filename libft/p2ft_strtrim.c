@@ -17,10 +17,13 @@ static size_t get_end(char const *s1, char const *set)
 {
 	size_t i;
 
-	i = ft_strlen(s1) - 1;
-	while (i > 0 && issep(s1[i], set))
-
-		return (i);
+	i = ft_strlen(s1);
+	while (i-- > 0)
+	{
+		if (!issep(s1[i], set))
+			return (i);
+	}
+	return (i);
 }
 
 static size_t get_start(char const *s1, char const *set)
@@ -39,8 +42,15 @@ char *ft_strtrim(char const *s1, char const *set)
 	size_t s;
 	size_t e;
 
+	if (!s1)
+		return (NULL);
+
 	s = get_start(s1, set);
 	e = get_end(s1, set);
+	str = ft_substr(s1, s, e - s + 1);
+	if (!str)
+		return (NULL);
+	return (str);
 }
 //  Allocates (with malloc(3)) and returns a copy of
 // ’s1’ with the characters specified in ’set’ removed

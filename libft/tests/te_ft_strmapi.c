@@ -36,5 +36,7 @@ int main()
 	test_strmapi("aeiou", vowel_toupper, "AEIOU");
 	test_strmapi("bcdf", vowel_toupper, "bcdf");
 	test_strmapi("$%#", vowel_toupper, "$%#");
+	test_strmapi("$%#", NULL, "$%#");
 	test_strmapi(NULL, vowel_toupper, NULL);
+	test_strmapi(NULL, NULL, NULL);
 }
