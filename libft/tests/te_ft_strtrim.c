@@ -20,7 +20,8 @@ void test_strtrim(const char *s, const char *set, const char *exp)
 	printf("expected:		\"%s\"\n", exp);
 	printf("ft_strtrim:		\"%s\"\n", str);
 	printf("\n");
-	assert(strcmp(str, exp) == 0);
+	if (s && set)
+		assert(strcmp(str, exp) == 0);
 	free(str);
 }
 
@@ -56,6 +57,9 @@ int main()
 	test_strtrim(" ", " ", "");		// String with only spaces
 	test_strtrim("     ", " ", ""); // Multiple spaces
 	test_strtrim("!!", "!", "");	// Only characters to trim
+	test_strtrim(NULL, "!", "");	// Only characters to trim
+	test_strtrim("dsa", NULL, "");	// Only characters to trim
+	test_strtrim(NULL, NULL, "");	// Only characters to trim
 
 	// Special characters and unicode
 	test_strtrim("\tHello World\t", "\t", "Hello World");
