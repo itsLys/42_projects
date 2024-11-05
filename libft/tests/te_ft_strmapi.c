@@ -31,7 +31,7 @@ char vowel_toupper(unsigned int i, char c)
 
 int main()
 {
-	test_strmapi("Hello World", vowel_toupper, "HEllO WOrld");
+	test_strmapi("Hello World", NULL, "HEllO WOrld");
 	test_strmapi("abcdefg", vowel_toupper, "AbcdEfg");
 	test_strmapi("aeiou", vowel_toupper, "AEIOU");
 	test_strmapi("bcdf", vowel_toupper, "bcdf");

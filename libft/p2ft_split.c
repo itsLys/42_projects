@@ -1,4 +1,6 @@
 #include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
 static const char *skip_delim(const char *s, char c)
 {
@@ -19,6 +21,7 @@ static size_t count_words(const char *s, char c)
 	size_t count;
 
 	count = 0;
+	write(1, "Hello\n", 6);
 	while (*s)
 	{
 		s = skip_delim(s, c);
@@ -54,6 +57,7 @@ static char **free_mem(char **list, size_t i)
 
 char **ft_split(char const *s, char c)
 {
+	// printf("Hello");
 	size_t list_size;
 	char **list;
 	char *word;

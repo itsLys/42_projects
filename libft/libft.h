@@ -1,12 +1,7 @@
 // can contain macros and typedefs if needed
 
 #include <stdlib.h>
-#define U_SHRT_MAX 65535
-typedef enum e_bool
-{
-	FALSE,
-	TRUE
-} t_bool;
+#include <unistd.h>
 int ft_atoi(const char *nptr);
 void ft_bzero(void *s, size_t n);
 void *ft_calloc(size_t nmemb, size_t size);
@@ -40,3 +35,7 @@ char **ft_split(const char *s, char c);
 char *ft_strtrim(const char *s, const char *set);
 char *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void ft_striteri(char *, void (*f)(unsigned int, char *));
+void ft_putchar_fd(char c, int fd);
+void ft_putendl_fd(char *s, int fd);
+void ft_putnbr_fd(int n, int fd);
+void ft_putstr_fd(char *s, int fd);
