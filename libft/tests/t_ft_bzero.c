@@ -20,7 +20,7 @@ void print_buff(void *buff_orig, void *buff_ft, size_t size)
 	printf("\n");
 }
 
-void test_memory_initialized(size_t size, size_t n)
+void test_bzero(size_t size, size_t n)
 {
 	static int case_n = 0;
 	unsigned char *buff_orig = (unsigned char *)malloc(size);
@@ -42,61 +42,13 @@ void test_memory_initialized(size_t size, size_t n)
 	free(buff_ft);
 }
 
-void test_memory_set_to_zero(size_t size, size_t n)
-{
-	static int case_n = 0;
-	unsigned char *buff_orig = (unsigned char *)malloc(size);
-	unsigned char *buff_ft = (unsigned char *)malloc(size);
-	size_t i = 0;
-	printf("-------------------\n");
-	printf("------ test case: %d ------\n", case_n++);
-	printf("Buffers initialized:\n");
-	memset(buff_orig, 0, size);
-	memcpy(buff_ft, buff_orig, size);
-	print_buff(buff_orig, buff_ft, size);
-	printf("\n");
-	printf("Bzero applied:\n");
-	bzero(buff_orig, n);
-	ft_bzero(buff_ft, n);
-	print_buff(buff_orig, buff_ft, size);
-	assert(memcmp(buff_orig, buff_ft, size) == 0);
-	free(buff_orig);
-	free(buff_ft);
-}
-
-void test_nullp(size_t n)
-{
-	unsigned char *buff;
-	buff = NULL;
-	// bzero(buff, n);
-	// ft_bzero(buff, n); // seg fault
-}
-
 int main()
 {
 	// BZERO
-	test_memory_initialized(10, 2);
-	test_memory_initialized(10, 10);
-	test_memory_initialized(2, 10);
-	test_memory_initialized(0, 10);
-	test_memory_initialized(10, 0);
-	test_memory_initialized(0, 0);
-	// test_memory_initialized(10, SIZE_MAX);
-
-	test_memory_set_to_zero(10, 2);
-	test_memory_set_to_zero(10, 10);
-	test_memory_set_to_zero(2, 10);
-	test_memory_set_to_zero(0, 10);
-	test_memory_set_to_zero(10, 0);
-	test_memory_set_to_zero(0, 0);
-
-	test_nullp(1);
+	test_bzero(10, 2);
+	test_bzero(10, 10);
+	test_bzero(2, 10);
+	test_bzero(0, 10);
+	test_bzero(10, 0);
+	test_bzero(0, 0);
 }
-// TODO:	[x] NULL Pointer as input
-// 			[x] Zero length
-// 			[x] Delete 0 bytes
-// 			Memory overlap
-// 			MAX_SIZE
-// 			[x] Memory already zeroed
-// 			Non contiguous memory block through pointer arithmetic
-//

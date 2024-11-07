@@ -1,6 +1,7 @@
 #include "../libft.h"
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <strings.h>
 #include <unistd.h>
@@ -52,26 +53,24 @@ void del(void *content)
 		*p = 0;
 }
 
-void f(void *content)
+void *f(void *content)
 {
-	unsigned char *p = (unsigned char *)content;
-	while (*p != 0)
-	{
-		*p = 1;
-		p++;
-	}
+	char *p = strdup((char *)content);
+	*p = '\x12';
+	return (void *)p;
 }
 
 int main()
 {
 	t_list *node;
 	t_list **head = &node;
+	t_list *hh;
 	init_lst(strdup("abcd"), &node);
 	ft_lstadd_front(head, ft_lstnew(strdup("efgh")));
 	ft_lstadd_front(head, ft_lstnew(strdup("\x10\xab\xbc")));
 	ft_lstadd_back(head, ft_lstnew(strdup("0123")));
 	ft_lstadd_back(head, ft_lstnew(strdup("\xaa\xbb\xcc")));
-	ft_lstiter(*head, f);
-	print_lst(head);
-	// ft_lstclear(head, del);
+	hh = ft_lstmap(*head, f, del);
+	print_lst(&hh);
+	ft_lstclear(head, del);
 }
