@@ -2,4 +2,7 @@
 
 t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	t_list *head;
+
+	return (head);
 }
