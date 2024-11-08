@@ -5,9 +5,9 @@ void ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list *node;
 
-	// if (!del || !lst || !*lst)
-	// 	return;
-	while (node->next)
+	if (!del || !lst || !*lst)
+		return;
+	while (*lst)
 	{
 		node = (*lst)->next;
 		ft_lstdelone(*lst, del);
