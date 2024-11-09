@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/09 11:32:09 by ihajji            #+#    #+#             */
+/*   Updated: 2024/11/09 11:32:09 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static unsigned int count_digits(long n)
+static unsigned int	count_digits(long n)
 {
-	unsigned int digits;
+	unsigned int	digits;
 
 	digits = 1;
 	while (n > 9)
@@ -13,7 +25,7 @@ static unsigned int count_digits(long n)
 	return (digits);
 }
 
-static int resolve_sign(int n, long *num)
+static int	resolve_sign(int n, long *num)
 {
 	if (n < 0)
 	{
@@ -24,9 +36,9 @@ static int resolve_sign(int n, long *num)
 	return (1);
 }
 
-static void write_num(char *str, long num, unsigned int chars)
+static void	write_num(char *str, long num, unsigned int chars)
 {
-	int i;
+	int	i;
 
 	i = chars;
 	str[i--] = '\0';
@@ -37,12 +49,12 @@ static void write_num(char *str, long num, unsigned int chars)
 	}
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	long num;
-	unsigned int chars;
-	char *str;
-	int sign;
+	long			num;
+	unsigned int	chars;
+	char			*str;
+	int				sign;
 
 	sign = resolve_sign(n, &num);
 	chars = count_digits(num);
