@@ -1,14 +1,14 @@
 #include "libft.h"
+#include "test.h"
 #include <assert.h>
 #include <stdio.h>
 
 void test_ft_atoi(const char *str)
 {
-	static int atoi_case = 0;
 	int atoi_int = atoi(str);
 	int ft_atoi_int = ft_atoi(str);
 	printf("-------------------\n");
-	printf("test case:	%d\n", atoi_case++);
+	printf("test case:	%zu\n", get_case());
 	printf("str:		\"%s\"\n", str);
 	printf("atoi:		%d\n", atoi_int);
 	printf("ft_atoi:	%d\n", ft_atoi_int);

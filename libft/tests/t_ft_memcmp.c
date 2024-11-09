@@ -1,4 +1,5 @@
-#include "../libft.h"
+#include "libft.h"
+#include "test.h"
 #include <assert.h>
 #include <ctype.h>
 #include <limits.h>
@@ -11,14 +12,15 @@ size_t get_case()
 	return (i++);
 }
 
-void print_arr(const void *arr, size_t size)
+void print_buff(const void *arr, size_t size)
 {
 
 	const unsigned char *ap;
 	ap = (const unsigned char *)arr;
 	while (size--)
 	{
-		printf("%.2x, ", *(ap++));
+		printf("%.2x", *(ap++));
+		if (size)
 	}
 }
 

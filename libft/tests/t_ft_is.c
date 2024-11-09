@@ -1,15 +1,6 @@
-#include "../libft.h"
-#include <assert.h>
+#include "libft.h"
+#include "test.h"
 #include <ctype.h>
-#include <limits.h>
-#include <stdio.h>
-#include <string.h>
-
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
 
 void valid_is_test(char *str, size_t size)
 {

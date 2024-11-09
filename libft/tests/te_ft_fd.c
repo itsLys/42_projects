@@ -1,4 +1,5 @@
-#include "../libft.h"
+#include "libft.h"
+#include "test.h"
 #include <assert.h>
 #include <ctype.h>
 #include <fcntl.h>

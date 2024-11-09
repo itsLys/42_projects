@@ -1,4 +1,5 @@
-#include "../libft.h"
+#include "libft.h"
+#include "test.h"
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
