@@ -40,4 +40,5 @@ int main()
 	test_same_mem_same_size(buff1, buff2);
 	test_same_mem_same_size(buff3, buff4);
 	test_same_mem_same_size(buff5, buff6);
+	memcmp(NULL, NULL, 0);
 }

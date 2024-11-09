@@ -4,26 +4,19 @@
 # 	must cOmpile with the flags
 # 		-Wall, -Wextra, -Werror
 NAME = libft.a
-CFLAGS = -Wall -Wextra -Werror
-SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
-			ft_itoa.c ft_atoi.c ft_bzero.c ft_calloc.c ft_memchr.c ft_memcmp.c  \
-			ft_memcpy.c ft_memmove.c ft_memset.c \
-			ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
-			ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c  \
-			ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c  \
-			ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
-			ft_tolower.c ft_toupper.c 
-SRC_BONUS = ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
- 				ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c \
- 				ft_lstlast_bonus.c ft_lstmap_bonus.c ft_lstnew_bonus.c \
- 				ft_lstsize_bonus.c 
-SRC_TEST = print_bytes.c get_case.c
+SRC_TEST = print_bytes.c get_case.c \
+tef_ft_lst.c      te_ft_strjoin.c  t_ft_bzero.c   t_ft_memmove.c  t_ft_strlcpy.c  t_ft_to.c \
+te_ft_fd.c        te_ft_strmapi.c  t_ft_is.c      t_ft_memset.c   t_ft_strlen.c \
+te_ft_itoa.c      te_ft_strtrim.c  t_ft_memchr.c  t_ft_strchr.c   t_ft_strncmp.c \
+te_ft_split.c     te_ft_substr.c   t_ft_memcmp.c  t_ft_strdup.c   t_ft_strnstr.c \
+te_ft_striteri.c  t_ft_atoi.c      t_ft_memcpy.c  t_ft_strlcat.c  t_ft_strrchr.c 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 OBJ_TEST = $(SRC_TEST:.c=.o)
 AROPTS = rcs	
 
-all: $(NAME)
+all:
+	cc t_ft_memcmp.c   -L. -lft print_bytes.c get_case.c -o test_memcmp
 
 $(NAME): $(OBJ)
 	ar $(AROPTS) $(NAME) $(OBJ)
