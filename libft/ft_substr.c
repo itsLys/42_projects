@@ -3,10 +3,8 @@
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char *substr;
-	size_t i;
 	size_t slen;
 
-	i = 0;
 	if (!s)
 		return (ft_strdup(""));
 	slen = ft_strlen(s);
