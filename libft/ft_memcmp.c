@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char *s1p;
-	const unsigned char *s2p;
+	const unsigned char	*s1p;
+	const unsigned char	*s2p;
 
 	if (!s1 && !s2)
 		return (0);

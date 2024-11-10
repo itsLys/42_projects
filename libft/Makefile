@@ -35,9 +35,16 @@ bonus: $(OBJ) $(OBJ_BONUS)
 clean:
 	rm -f $(OBJ) $(OBJ_BONUS)
 
+build: re
+	cp -p libft.h libft.a tests/
+	python3 -m c_formatter_42 $(SRC) 
+	python3 -m c_formatter_42 $(SRC_BONUS) 
+	# norminette ft_*.c libft.h
+	make clean
+
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, clean, fclean, re, build
