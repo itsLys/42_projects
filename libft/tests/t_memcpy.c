@@ -6,8 +6,8 @@
 void test_mem_cpy(const unsigned char *src, size_t size)
 {
 	unsigned char buff[7] = {'\x00', '\x01', '\xf0', '\x30', '\x7f', '\x1f', '\xa0'};
-	char *dst = malloc(size);
-	char *ftdst = malloc(size);
+	unsigned char *dst = malloc(size);
+	unsigned char *ftdst = malloc(size);
 	memcpy(dst, buff, size);
 	memcpy(ftdst, buff, size);
 	printf("---------------------------\n");
