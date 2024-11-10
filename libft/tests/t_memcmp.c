@@ -40,5 +40,18 @@ int main()
 	test_same_mem_same_size(buff1, buff2);
 	test_same_mem_same_size(buff3, buff4);
 	test_same_mem_same_size(buff5, buff6);
-	memcmp(NULL, NULL, 0);
+
+	int p = memcmp(NULL, NULL, 1);
+	printf("memcmp:	s1 == s2 == NULL:	%d\n", p);
+	// p = memcmp(NULL, buff1, 1);
+	// printf("memcmp:	s2 == NULL:	%d\n", p);
+	// p = memcmp(buff2, NULL, 1);
+	// printf("memcmp:	s1 == NULL:	%d\n", p);
+
+	int ftp = ft_memcmp(NULL, NULL, 1);
+	printf("ft_memcmp:	s1 == s2 == NULL:	%d\n", p);
+	// ftp = ft_memcmp(NULL, buff1, 1);
+	// printf("ft_memcmp:	s2 == NULL:	%d\n", p);
+	// ftp = ft_memcmp(buff2, NULL, 1);
+	// printf("ft_memcmp:	s1 == NULL:	%d\n", p);
 }

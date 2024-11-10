@@ -5,11 +5,33 @@
 # 		-Wall, -Wextra, -Werror
 NAME = libft.a
 SRC_TEST = print_bytes.c get_case.c \
-tef_ft_lst.c      te_ft_strjoin.c  t_ft_bzero.c   t_ft_memmove.c  t_ft_strlcpy.c  t_ft_to.c \
-te_ft_fd.c        te_ft_strmapi.c  t_ft_is.c      t_ft_memset.c   t_ft_strlen.c \
-te_ft_itoa.c      te_ft_strtrim.c  t_ft_memchr.c  t_ft_strchr.c   t_ft_strncmp.c \
-te_ft_split.c     te_ft_substr.c   t_ft_memcmp.c  t_ft_strdup.c   t_ft_strnstr.c \
-te_ft_striteri.c  t_ft_atoi.c      t_ft_memcpy.c  t_ft_strlcat.c  t_ft_strrchr.c 
+				t_atoi.c \
+				t_bzero.c \
+				t_fd.c \
+				t_is.c \
+				t_itoa.c \
+				t_lst.c \
+				t_memchr.c \
+				t_memcmp.c \
+				t_memcpy.c \
+				t_memmove.c \
+				t_memset.c \
+				t_split.c \
+				t_strchr.c \
+				t_strdup.c \
+				t_striteri.c \
+				t_strjoin.c \
+				t_strlcat.c \
+				t_strlcpy.c \
+				t_strlen.c \
+				t_strmapi.c \
+				t_strncmp.c \
+				t_strnstr.c \
+				t_strrchr.c \
+				t_strtrim.c \
+				t_substr.c \
+				t_to.c 
+
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 OBJ_TEST = $(SRC_TEST:.c=.o)
