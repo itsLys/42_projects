@@ -5,12 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
-
 void test_toup(char c)
 {
 	int tou = toupper(c);

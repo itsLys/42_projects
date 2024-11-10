@@ -7,12 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
-
 void test_striteri(const char *s, void (*f)(unsigned int, char *), const char *exp)
 {
 	char *str;
@@ -48,4 +42,7 @@ int main()
 	test_striteri("bcdf", vowel_toupper, "bcdf");
 	test_striteri("$%#", vowel_toupper, "$%#");
 	test_striteri(NULL, vowel_toupper, NULL);
+	char str[] = "Hello";
+	ft_striteri(str, NULL);
+	ft_striteri(NULL, NULL);
 }

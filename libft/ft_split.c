@@ -11,55 +11,40 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
 
-static const char *skip_delim(const char *s, char c)
+static size_t	count_words(const char *s, char c)
 {
-	while (*s == c)
-		s++;
-	return (s);
-}
-
-static const char *skip_word(const char *s, char c)
-{
-	while (*s && *s != c)
-		s++;
-	return (s);
-}
-
-static size_t count_words(const char *s, char c)
-{
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	while (*s)
 	{
-		s = skip_delim(s, c);
+		while (*s == c)
+			s++;
 		if (*s)
 			count++;
-		s = skip_word(s, c);
+		while (*s && *s != c)
+			s++;
 	}
 	if (count == 0)
 		return (1);
 	return (count);
 }
 
-// static size_t	get_word_len(const char *s, char c)
-// {
-// 	size_t	len;
-//
-// 	len = 0;
-// 	while (*s && *s != c)
-// 	{
-// 		s++;
-// 		len++;
-// 	}
-// 	return (len);
-// }
+static size_t	get_word_len(const char *s, char c)
+{
+	size_t	len;
 
-static char **free_mem(char **list, size_t i)
+	len = 0;
+	while (*s && *s != c)
+	{
+		s++;
+		len++;
+	}
+	return (len);
+}
+
+static char	**free_mem(char **list, size_t i)
 {
 	while (i-- > 0)
 		free(list[i]);
@@ -67,14 +52,14 @@ static char **free_mem(char **list, size_t i)
 	return (NULL);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t list_size;
-	char **list;
-	char *word;
-	size_t i;
+	size_t	list_size;
+	char	**list;
+	char	*word;
+	size_t	i;
 
-	if (s == NULL)
+	if (!s)
 		return (NULL);
 	i = 0;
 	list_size = count_words(s, c) + 1;
@@ -84,25 +69,17 @@ char **ft_split(char const *s, char c)
 	list[--list_size] = NULL;
 	while (i < list_size)
 	{
-		s = skip_delim(s, c);
-		printf(":::::ft_strchr(s, c):		%p\n", ft_strchr(s, c));
-		printf(":::::s:						%p\n", s);
-		printf(":::::ft_strchr(s, c) - s:	%ld\n", ft_strchr(s, c) - s);
-		// TODO: FIX THIS, word count doesn't count correct
-		word = ft_substr(s, 0, ft_strchr(s, c) - s);
+		while (*s == c)
+			s++;
+		word = ft_substr(s, 0, get_word_len(s, c));
 		if (!word)
 			return (free_mem(list, i));
 		list[i++] = word;
-		s = skip_word(s, c);
+		while (*s && *s != c)
+			s++;
 	}
 	return (list);
 }
-// TODO:
-//	allocate a char ** of the words
-//
+
 // NOTE:
 //	what is const char * vs const char
-//
-//	"ddddddddddddddd"
-//	""
-//	'd'

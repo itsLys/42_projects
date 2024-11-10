@@ -64,8 +64,7 @@ int main()
 	test_split("", ' ', (char *[]){"", NULL});
 	test_split("d", 'd', (char *[]){"", NULL});
 	test_split("dddddddd", 'd', (char *[]){"", NULL});
-	test_split("dddsssdddsssdddsddd", 's', (char *[]){"ddd", "ddd", "ddd", "ddd", NULL});
-	test_split("Hello World", ' ', (char *[]){"Hello", "World", NULL});
+	test_split("ddddsssdddsssdddsddd", 's', (char *[]){"dddd", "ddd", "ddd", "ddd", NULL});
 	test_split("Hello World", ' ', (char *[]){"Hello", "World", NULL});
 	test_split("This is a test", ' ', (char *[]){"This", "is", "a", "test", NULL});
 	test_split("One,Two,Three", ',', (char *[]){"One", "Two", "Three", NULL});

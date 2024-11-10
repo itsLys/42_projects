@@ -1,14 +1,9 @@
 #include "libft.h"
+#include "test.h"
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
 #include <string.h>
-
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
 
 void test_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -33,11 +28,12 @@ int main()
 	test_strncmp("Hello", "Hello", 5);
 	test_strncmp("H", "H", 1);
 	test_strncmp("", "", 0);
-
 	test_strncmp("Hello, World", "Hello, Universe", 5);
 	test_strncmp("HAHA", "HEHE", 1);
 	test_strncmp("Bro", "Son", 0);
-
 	test_strncmp("Hello", "Heslo", 5);
 	test_strncmp("H", "2", 1);
+	test_strncmp(NULL, NULL, 0);
+	// size_t strncmpr = strncmp(NULL, "Hello", 1);
+	// size_t ft_strncmpr = ft_strncmp(NULL, "Hello", 1);
 }

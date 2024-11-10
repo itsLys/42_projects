@@ -5,12 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
-
 void test_strdup(const char *str)
 {
 	char *sdup = strdup(str);
@@ -38,4 +32,6 @@ int main()
 	test_strdup("h");
 	test_strdup("");
 	test_strdup("Hello, How are you");
+	// char *sdup = strdup(NULL);
+	// char *ftsdup = strdup(NULL);
 }

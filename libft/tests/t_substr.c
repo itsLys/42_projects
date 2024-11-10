@@ -5,12 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
-
 void test_substr(const char *s, unsigned int i, size_t len, const char *exp)
 {
 	char *str = ft_substr(s, i, len);

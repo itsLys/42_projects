@@ -5,12 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
-
 void test_strtrim(const char *s, const char *set, const char *exp)
 {
 	char *str = ft_strtrim(s, set);
@@ -53,14 +47,14 @@ int main()
 	test_strtrim("~~~Hello~~~", "~", "Hello");
 
 	// Edge cases
-	test_strtrim("", " ", "");		// Empty string
-	test_strtrim("", "", "");		// Empty string
-	test_strtrim(" ", " ", "");		// String with only spaces
-	test_strtrim("     ", " ", ""); // Multiple spaces
-	test_strtrim("!!", "!", "");	// Only characters to trim
-	test_strtrim(NULL, "!", "");	// Only characters to trim
-	test_strtrim("dsa", NULL, "");	// Only characters to trim
-	test_strtrim(NULL, NULL, "");	// Only characters to trim
+	test_strtrim("", " ", "");
+	test_strtrim("", "", "");
+	test_strtrim(" ", " ", "");
+	test_strtrim("     ", " ", "");
+	test_strtrim("!!", "!", "");
+	test_strtrim(NULL, "!", "");
+	test_strtrim("dsa", NULL, "");
+	test_strtrim(NULL, NULL, "");
 
 	// Special characters and unicode
 	test_strtrim("\tHello World\t", "\t", "Hello World");

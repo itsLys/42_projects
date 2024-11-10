@@ -1,14 +1,9 @@
 #include "libft.h"
+#include "test.h"
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
 #include <string.h>
-
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
 
 void test_strlen(const char *str)
 {
@@ -35,4 +30,6 @@ int main()
 	test_strlen("Hel,,,,,,lo  twqeWorld!");
 	test_strlen("c");
 	test_strlen("");
+	// size_t slen = strlen(NULL);
+	// size_t ftslen = ft_strlen(NULL);
 }

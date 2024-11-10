@@ -1,14 +1,9 @@
 #include "libft.h"
+#include "test.h"
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
 #include <string.h>
-
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
 
 void test_strrchr(const char *str, int c)
 {
@@ -16,8 +11,8 @@ void test_strrchr(const char *str, int c)
 	char *ft_sch = ft_strrchr(str, c);
 	printf("---------------------------\n");
 	printf("case number: 	%zu\n", get_case());
-	printf("byte:		\"%.2x\"\n", c);
-	printf("value:		\"%.2d\"\n", c);
+	printf("byte:		\'%c\'\n", c);
+	printf("value:		\"%.2x\"\n", c);
 	printf("\n");
 	printf("str:		\"%s\"\n", str);
 	printf("addr		\"%p\"\n", str);
@@ -96,5 +91,6 @@ int main()
 	test_strrchr("Hello", 0xff00);
 	test_strrchr("Hello", 0xff00);
 	test_strrchr("", 0xff00);
-	test_strrchr("", 0xffaa);
+	// char *sch = strrchr(NULL, 0);
+	// char *ftsch = ft_strrchr(NULL, 0);
 }

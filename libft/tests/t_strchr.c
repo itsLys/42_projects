@@ -5,20 +5,14 @@
 #include <stdio.h>
 #include <string.h>
 
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
-
 void test_strchr(const char *str, int c)
 {
 	char *sch = strchr(str, c);
 	char *ft_sch = ft_strchr(str, c);
 	printf("---------------------------\n");
 	printf("case number: 	%zu\n", get_case());
-	printf("byte:		\"%.2x\"\n", c);
-	printf("value:		\"%.2d\"\n", c);
+	printf("byte:		\'%c\'\n", c);
+	printf("value:		\"%.2x\"\n", c);
 	printf("\n");
 	printf("str:		\"%s\"\n", str);
 	printf("addr		\"%p\"\n", str);
@@ -98,7 +92,10 @@ int main()
 	test_strchr("Hello", 0xff00);
 	test_strchr("", 0xff00);
 	test_strchr("", 0xffaa);
-	// test_strchr("", int c)
+	// char *sch = strrchr(NULL, 0);
+	// sch = strrchr(NULL, 1);
+	// char *ftsch = ft_strrchr(NULL, 0);
+	// ftsch = ft_strrchr(NULL, 'c');
 	// TODO:
 	// 	type casting knowledge gap,,
 	// 	sign preservation when casting

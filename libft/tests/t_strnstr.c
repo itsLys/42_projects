@@ -1,18 +1,12 @@
 #include "libft.h"
+#include "test.h"
 #include <assert.h>
+#include <bsd/string.h>
 #include <limits.h>
 #include <stdio.h>
-#include <string.h>
-
-size_t get_case()
-{
-	static size_t i = 0;
-	return (i++);
-}
 
 void test_strnstr(const char *h, const char *n, size_t len)
 {
-
 	char *snstr = strnstr(h, n, len);
 	char *ft_snstr = ft_strnstr(h, n, len);
 	printf("---------------------------\n");
@@ -55,4 +49,10 @@ int main()
 	test_strnstr("", "", 100);
 	test_strnstr("Hello", "lo", 4);
 	test_strnstr("Hello, World", "Worl", 10);
+	// char *snstr = strnstr(NULL, "Hello", 0);
+	// char *ftsnstr = ft_strnstr(NULL, "Hello", 0);
+	// char *snstr = strnstr("Hello", NULL, 0);
+	// char *ftsnstr = ft_strnstr("Hello", NULL, 0);
+	// char *snstr = strnstr(NULL, NULL, 0);
+	// char *ftsnstr = ft_strnstr(NULL, NULL, 0);
 }
