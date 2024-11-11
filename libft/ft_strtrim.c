@@ -12,8 +12,6 @@
 
 #include "libft.h"
 
-// TODO:
-//	diff between char const *, const char *
 static int	issep(char c, char const *set)
 {
 	while (*set)
@@ -65,9 +63,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	return (str);
 }
-//  Allocates (with malloc(3)) and returns a copy of
-// ’s1’ with the characters specified in ’set’ removed
-// from the beginning and the end of the string.
-//
-// R: The trimmed string.
-// NULL if the allocation fails.

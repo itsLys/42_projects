@@ -1,8 +1,3 @@
-# TODO: 
-# 	must contain at least the rules
-# 		$(NAME), all, clean, fclean, re
-# 	must cOmpile with the flags
-# 		-Wall, -Wextra, -Werror
 NAME = libft.a
 CFLAGS = -Wall -Wextra -Werror
 SRC = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \

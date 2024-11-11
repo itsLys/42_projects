@@ -2,6 +2,7 @@
 #include "test.h"
 #include <assert.h>
 #include <limits.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -28,6 +29,7 @@ int main()
 	test_substr("Hello World", 1, 1, "e");
 	test_substr("Hello World", 1, 10, "ello World");
 	test_substr("Hello World", 1, 100, "ello World");
+	test_substr("Hello World", 1, SIZE_MAX, "ello World");
 	test_substr("Hello World", 1, 9, "ello Worl");
 	test_substr("Hello World", 6, 5, "World");
 	test_substr("OpenAI GPT", 0, 4, "Open");

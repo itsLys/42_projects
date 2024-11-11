@@ -33,5 +33,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dsize)
 	dst[dlen + i] = '\0';
 	return (slen + dlen);
 }
-// TODO:
-// 	return value of strlcat meaning and usage
