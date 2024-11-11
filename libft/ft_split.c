@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static size_t	count_words(const char *s, char c)
 {
@@ -54,7 +55,7 @@ static char	**free_mem(char **list, size_t i)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	list_size;
+	size_t	word_count;
 	char	**list;
 	char	*word;
 	size_t	i;
@@ -62,12 +63,11 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	i = 0;
-	list_size = count_words(s, c) + 1;
-	list = ft_calloc(list_size, sizeof(char *));
+	word_count = count_words(s, c);
+	list = ft_calloc(word_count + 1, sizeof(char *));
 	if (!list)
 		return (NULL);
-	list[--list_size] = NULL;
-	while (i < list_size)
+	while (i < word_count)
 	{
 		while (*s == c)
 			s++;
