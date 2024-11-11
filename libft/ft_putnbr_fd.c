@@ -19,6 +19,10 @@ static size_t	write_num(char *buf, int n)
 	size_t	i;
 
 	i = 0;
+	if (!n)
+	{
+		buf[i++] = '0';
+	}
 	if (n < 0)
 	{
 		num = -(long)n;
