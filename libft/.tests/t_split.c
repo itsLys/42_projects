@@ -56,6 +56,7 @@ void test_split(const char *s, char c, char **exp)
 int main()
 {
 	test_split("Hello World", '\0', (char *[]){"Hello World", NULL});
+	test_split("          ", ' ', (char *[]){"", NULL});
 	test_split("Hello World", 0, (char *[]){"Hello World", NULL});
 	test_split(NULL, '\0', NULL);
 	test_split(NULL, 'd', NULL);

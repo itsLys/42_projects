@@ -32,7 +32,7 @@ clean:
 
 build: re
 	make bonus
-	cp -p libft.h libft.a tests/
+	cp -p libft.h libft.a .tests/
 	python3 -m c_formatter_42 $(SRC) 
 	python3 -m c_formatter_42 $(SRC_BONUS) 
 	norminette ft_*.c libft.h

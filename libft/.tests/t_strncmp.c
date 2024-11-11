@@ -33,7 +33,9 @@ int main()
 	test_strncmp("Bro", "Son", 0);
 	test_strncmp("Hello", "Heslo", 5);
 	test_strncmp("H", "2", 1);
+	test_strncmp("test\200", "test\0", 6);
 	test_strncmp(NULL, NULL, 0);
+
 	// size_t strncmpr = strncmp(NULL, "Hello", 1);
 	// size_t ft_strncmpr = ft_strncmp(NULL, "Hello", 1);
 }
