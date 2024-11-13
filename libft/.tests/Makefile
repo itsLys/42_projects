@@ -38,12 +38,12 @@ OBJ_TEST = $(SRC_TEST:.c=.o)
 AROPTS = rcs	
 
 all:
-	cc t_ft_memcmp.c   -L. -lft print_bytes.c get_case.c -o test_memcmp
+	cc $(SRC_TEST) -L. -lft -lbsd print_bytes.c get_case.c -o $(SRC_TEST:.c=.out)
 
 $(NAME): $(OBJ)
 	ar $(AROPTS) $(NAME) $(OBJ)
 
-%.o: %.c
+%.out: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: $(OBJ) $(OBJ_BONUS)
