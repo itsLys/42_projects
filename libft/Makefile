@@ -19,10 +19,10 @@ AROPTS = rcs
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar $(AROPTS) $(NAME) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+	ar $(AROPTS) $(NAME) $(OBJ)
 
 bonus: $(OBJ) $(OBJ_BONUS)
 	ar $(AROPTS) $(NAME) $(OBJ) $(OBJ_BONUS)
