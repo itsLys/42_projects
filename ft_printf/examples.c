@@ -3,6 +3,7 @@
 int main()
 {
 	//cspdiuxX%
+	//`-0.` `# +`
 	// printf("%[flags...][minimun_field_width][precision][length_modifier]conversion_specifier")
 	int a = 123;
 	int b = -456;
