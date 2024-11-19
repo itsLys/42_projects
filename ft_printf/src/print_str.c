@@ -11,7 +11,7 @@ int putnstr(char *str, int n)
 int print_str(char *str, t_flags *f)
 {
 	int count = 0;
-	size_t strlen = ft_strlen(str);
+	int strlen = ft_strlen(str);
 
 	if (f->precision_flag)
 	{
@@ -25,3 +25,4 @@ int print_str(char *str, t_flags *f)
 	}
 	return count;
 }
+// TODO: combination of width and precision
