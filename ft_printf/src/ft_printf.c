@@ -1,6 +1,4 @@
-#include <cctype>
 #include <stdarg.h>
-#include <stdatomic.h>
 #include <stdio.h>
 #include "ft_printf.h"
 
@@ -77,7 +75,8 @@ int parse_fmt(const char *fmt, va_list args, t_flags *f)
 	if (*fmt && *fmt == '.')
 	{
 		fmt++;
-		fmt += parse_integer(fmt, &(f->precision));
+		f->precision_flag = 1;
+		fmt += parse_integer(fmt, &(f->precision_value));
 	}
 	f->coversion = *(fmt++);
 	count += print_conversion(*fmt, args, f);

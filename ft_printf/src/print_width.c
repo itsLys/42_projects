@@ -1,7 +1,7 @@
 #include "ft_printf.h"
 
 // n number of the characters that are already printed or to be printed;
-int print_width(int n, t_flags *f)
+int print_width(t_flags *f, int n)
 {
 	int count = 0;
 	while (f->width - n > 0)

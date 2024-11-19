@@ -10,7 +10,8 @@ typedef	struct s_flags
 	int	left_adjusted;
 	int	space_flag;
 	int	force_sign;
-	int	precision;
+	int	precision_value;
+	int precision_flag;
 	int width;
 	int coversion;
 } t_flags;
@@ -20,4 +21,4 @@ int print_ptr(unsigned long long addr, t_flags *f);
 int print_nbr(int n, t_flags *f);
 int print_hex(unsigned int n, t_flags *f, char c);
 int check_valid(const char *fmt);
-int print_width(int c, t_flags *f)
+int print_width(t_flags *f, int c);
