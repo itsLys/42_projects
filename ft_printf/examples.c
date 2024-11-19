@@ -2,6 +2,7 @@
 
 int main()
 {
+	//what?
 	//cspdiuxX%
 	//`-0.` `# +`
 	// printf("%[flags...][minimun_field_width][precision][length_modifier]conversion_specifier")
