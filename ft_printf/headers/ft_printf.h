@@ -14,3 +14,9 @@ typedef	struct s_flags
 	int width;
 	int coversion;
 } t_flags;
+int print_char(int c, t_flags *f);
+int print_str(char *str, t_flags *f);
+int print_ptr(unsigned long long addr, t_flags *f);
+int print_nbr(int n, t_flags *f);
+int print_hex(unsigned int n, t_flags *f, char c);
+int check_valid(const char *fmt);

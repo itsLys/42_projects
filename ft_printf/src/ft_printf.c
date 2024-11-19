@@ -64,21 +64,6 @@ int print_conversion(char c, va_list args, t_flags *f)
 	return (count);
 }
 
-int check_valid(const char *fmt)
-{
-	int  valid = 0;
-	while (*fmt && ft_strchr(FLAGS, *fmt)) // the check of null byte is probabely a red herring
-		fmt++;
-	while (*fmt && ft_isdigit(*fmt))
-		fmt++;
-	if (*fmt == '.')
-		fmt++;
-	while (*fmt && ft_isdigit(*fmt))
-		fmt++;
-	if (ft_strchr(CONVERSIONS, *fmt))
-		return 1;
-	return 0;
-}
 
 int parse_fmt(const char *fmt, va_list args, t_flags *f)
 {
@@ -127,19 +112,4 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 	va_end(args);
 	return count;
 }
-// if (*format == 'd')
-// 	count += printf("%d", va_arg(args, int));
-// else if (*format == 'c')
-// 	count += printf("%c", va_arg(args, int));
-// else if (*format == 's')
-// 	count += printf("%s", va_arg(args, char *));
-// else if (*format == '%')
-// 	count += printf("%c", va_arg(args, int));
-// else if (*format == 'p')
-// 	count += printf("%p", va_arg(args, unsigned char *));
-// else
-// {
-// 	printf("%c", '%');
-// 	printf("%c", *format);
-// 	count += 2;
-// }
+// TODO: Unit tests
