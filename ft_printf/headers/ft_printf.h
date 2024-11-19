@@ -1,7 +1,7 @@
 #include "libft.h"
 #include <stdarg.h>
 #define FLAGS "#0-+ "
-#define CONVS "cspdiuxX"
+#define CONVERSIONS "cspdiuxX"
 
 typedef	struct s_flags 
 {
@@ -11,4 +11,5 @@ typedef	struct s_flags
 	int	space_flag;
 	int	force_sign;
 	int	precision;
+	int width;
 } t_flags;

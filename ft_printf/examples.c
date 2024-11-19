@@ -95,5 +95,7 @@ int main()
 	printf("	 default:	|%d|			|	precision `.0`:		|%.0d|\n", c, c);
 	// negative presicion can only be done using an argument
 	printf("\n");
-	printf("Length modifiers:\n");
+	printf("Edges\n");
+	printf("	 default:	|%9o|		|	flag `0-0`:	|%0-0-##    ###000--x|\n", a, a);
+	printf("	 default:	|%9o|		|	flag `0-0`:	|%000---000#..9x|\n", a, a);
 }
