@@ -12,4 +12,5 @@ typedef	struct s_flags
 	int	force_sign;
 	int	precision;
 	int width;
+	int coversion;
 } t_flags;
