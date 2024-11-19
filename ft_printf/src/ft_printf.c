@@ -113,3 +113,5 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 	return count;
 }
 // TODO: Unit tests
+// handle error from write,
+// handle \0 after a %

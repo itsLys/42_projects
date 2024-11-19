@@ -20,3 +20,4 @@ int print_ptr(unsigned long long addr, t_flags *f);
 int print_nbr(int n, t_flags *f);
 int print_hex(unsigned int n, t_flags *f, char c);
 int check_valid(const char *fmt);
+int print_width(int c, t_flags *f)
