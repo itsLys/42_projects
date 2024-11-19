@@ -30,7 +30,7 @@ RM			= rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "$(GREEN)Mandatory part is done!$(RESET)"
+	@echo "$(GREEN)Libft.a done!$(RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
@@ -40,6 +40,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@$(AR) $(NAME) $@
 
 bonus: $(OBJ) $(OBJ_BONUS)
+	@echo "$(GREEN)Libft.a (bonus) done!$(RESET)"
 
 clean :
 	@echo "$(RED)Cleaning $(OBJDIR)...$(RESET)"
