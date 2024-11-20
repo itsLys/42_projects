@@ -75,3 +75,4 @@ int handle_ptr(unsigned long long addr, t_flags *f)
 // if ptr == null
 // 	print (nil)
 
+// TODO: Only printing is remaining, keep going
