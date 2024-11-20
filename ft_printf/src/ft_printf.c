@@ -45,7 +45,10 @@ int print_conversion(char c, va_list args, t_flags *f)
 	if (c == 'c')
 		count += print_char(va_arg(args, int), f);
 	else if (c == 's')
+	{
+		f->zero_padded = 0;
 		count += print_str(va_arg(args, char *), f);
+	}
 	else if (c == 'p')
 		count += print_ptr(va_arg(args, unsigned long long), f);
 	else if (c == 'd' || c == 'i')

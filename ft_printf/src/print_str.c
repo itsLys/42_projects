@@ -1,28 +1,64 @@
 #include "ft_printf.h"
 
-int putnstr(char *str, int n)
+int putnstr(t_flags *f, char *str, int n)
 {
 	int count = 0;
+
+	if (!f->left_adjusted)
+		count += print_width(f, n);
 	while (*str && n--)
 		count += ft_putchar_fd(*(str++), 1);
+	if (f->left_adjusted)
+		count += print_width(f, n);
+	return count;
+}
+
+int handle_precision(t_flags *f, char *str)
+{
+	int count;
+	int slen;
+
+	count = 0;
+	slen = ft_strlen(str);
+	if (f->precision_flag)
+		count += putnstr(f, str, f->precision_value);
+	else
+		count += putnstr(f, str, slen);
+	return count;
+}
+
+int	handle_null(t_flags *f, char *str)
+{
+	int count;
+	int slen;
+
+	count = 0;
+	slen = ft_strlen(str);
+	if (f->precision_flag && f->precision_value >= 0 && f->precision_value < (int) slen)
+		count += print_width(f, 0);
+	else
+		handle_precision(f, str);
 	return count;
 }
 
 int print_str(char *str, t_flags *f)
 {
-	int count = 0;
-	int strlen = ft_strlen(str);
+	int count;
+	int slen;
 
-	if (f->precision_flag)
-	{
-		count += print_width(f, f->precision_value);
-		count += putnstr(str, f->precision_value);
-	}
+	count = 0;
+	if (!str)
+		count += handle_null(f, "(null)");
 	else
-	{
-		count += print_width(f, strlen);
-		count += putnstr(str, strlen);
-	}
+		count += handle_precision(f, str);
 	return count;
 }
-// TODO: combination of width and precision
+// calculate how many charachters are yu printing in total: field width
+// calculate how many charachters from th string are you printing: precision
+// determine if it is left or right adjusted: `-`
+//
+
+// if precision exists and < strlen("(null)")
+// 	print_nothing;
+//
+//

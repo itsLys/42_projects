@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 
+
 int check_valid(const char *fmt)
 {
 	int  valid = 0;
