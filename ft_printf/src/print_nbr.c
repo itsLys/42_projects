@@ -2,7 +2,10 @@
 
 int	print_nbr(int n, t_flags *f)
 {
-	char *numstr;
-
-	numstr = ft_itoa(n);
+	(void) f;
+	(void) n;
+	// char *numstr;
+	//
+	// numstr = ft_itoa(n);
+	return 1;
 }

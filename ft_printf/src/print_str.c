@@ -46,7 +46,7 @@ int	handle_null_str(t_flags *f)
 int handle_str(char *str, t_flags *f)
 {
 	int count;
-	int slen;
+	// int slen;
 
 	count = 0;
 	if (!str)

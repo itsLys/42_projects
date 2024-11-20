@@ -56,7 +56,7 @@ int print_conversion(char c, va_list args, t_flags *f)
 	else if (c == 'u')
 	{
 		f->force_sign = 0;
-		count += print_nbr(va_arg(args, char *), f);
+		count += print_nbr(va_arg(args, unsigned int), f);
 	}
 	else if (c == 'x' || c == 'X')
 		count += print_hex(va_arg(args, unsigned int), f, c);
@@ -94,10 +94,7 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 	while (*fmt)
 	{
 		if (*fmt != '%')
-		{
-			ft_putchar_fd(*fmt, 1);
-			count++;
-		}
+			count += ft_putchar_fd(*fmt, 1);
 		else
 		{
 			fmt++;
@@ -107,7 +104,7 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 				count += parse_fmt(fmt, args, &f);
 			}
 			else
-				break;
+				continue;
 		}
 		fmt++;
 	}

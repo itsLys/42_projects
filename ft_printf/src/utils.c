@@ -1,13 +1,15 @@
 #include "ft_printf.h"
+#include <assert.h>
+#include <stdio.h>
 
-int get_num_len(unsigned long long n, int base)
+int get_num_len(unsigned long long n, unsigned base)
 {
 	int len;
 
 	len = 1;
-	while (len > base - 1)
+	while (n > base - 1)
 	{
-		len /= base;
+		n /= base;
 		len++;
 	}
 	return len;
@@ -15,7 +17,6 @@ int get_num_len(unsigned long long n, int base)
 
 int check_valid(const char *fmt)
 {
-	int  valid = 0;
 	while (*fmt && ft_strchr(FLAGS, *fmt)) // the check of null byte is probabely a red herring
 		fmt++;
 	while (*fmt && ft_isdigit(*fmt))
@@ -28,3 +29,4 @@ int check_valid(const char *fmt)
 		return 1;
 	return 0;
 }
+
