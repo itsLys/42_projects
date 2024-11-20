@@ -28,6 +28,16 @@ int main()
 	printf("Default:	|%x|	|	Flag: '30':		|%#30x|\n", NULL, NULL);
 	printf("Default:	|%x|	|	Flag: '-30':	|%#-30x|\n", NULL, NULL);
 	printf("Default:	|%x|	|	Flag: '.30':	|%#.30x|\n", NULL, NULL);
+
+	printf("Default:	|%p|	|	Flag: '+30':	|%+030p|\n", ptr, ptr);
+	printf("Default:	|%p|	|	Flag: '+30':		|%+30p|\n", ptr, ptr);
+	printf("Default:	|%p|	|	Flag: '+30':	|%+-30p|\n", ptr, ptr);
+	printf("Default:	|%p|	|	Flag: '+.30':	|%+.30p|\n", ptr, ptr);
+
+	printf("Default:	|%p|	|	Flag: '+30':	|% 030p|\n", ptr, ptr);
+	printf("Default:	|%p|	|	Flag: '+30':	    |% 30p|\n", ptr, ptr);
+	printf("Default:	|%p|	|	Flag: '+30':	|% -30p|\n", ptr, ptr);
+	printf("Default:	|%p|	|	Flag: '+.30':	|% .30p|\n", ptr, ptr);
 	free(ptr);
 }
 //
