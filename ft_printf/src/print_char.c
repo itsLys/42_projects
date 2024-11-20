@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int print_char(int c, t_flags *f)
+int handle_char(int c, t_flags *f)
 {
 	int count;
 
@@ -12,3 +12,8 @@ int print_char(int c, t_flags *f)
 		count += print_width(f, 1);
 	return count;
 }
+
+// char accepts only width and left alignment coupled with width
+// |B|
+// |         B|
+// |B         |

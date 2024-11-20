@@ -43,7 +43,7 @@ int	handle_null_str(t_flags *f)
 	return count;
 }
 
-int print_str(char *str, t_flags *f)
+int handle_str(char *str, t_flags *f)
 {
 	int count;
 	int slen;

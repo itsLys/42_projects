@@ -1,5 +1,17 @@
 #include "ft_printf.h"
 
+int get_num_len(unsigned long long n, int base)
+{
+	int len;
+
+	len = 1;
+	while (len > base - 1)
+	{
+		len /= base;
+		len++;
+	}
+	return len;
+}
 
 int check_valid(const char *fmt)
 {
