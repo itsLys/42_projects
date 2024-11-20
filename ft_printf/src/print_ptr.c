@@ -15,7 +15,7 @@ int print_ptr(unsigned long long addr, t_flags *f)
 	{
 			
 	}
-
+	return count;
 }
 
 // if zero_flag exist
@@ -26,6 +26,10 @@ int print_ptr(unsigned long long addr, t_flags *f)
 // 	print addr and width
 // if precision exist
 // 	print 0x and 0s and addrs precision times
+// if force sign
+// 	prefix '+'
+// if space 
+// 	prefix ' '
 // if ptr == null
 // 	print (nil)
 
