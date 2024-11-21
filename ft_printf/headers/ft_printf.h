@@ -1,7 +1,7 @@
 #include "libft.h"
 #include <stdarg.h>
 #define FLAGS "#0-+ "
-#define CONVERSIONS "cspdiuxX"
+#define CONVERSIONS "cspdiuxX%"
 
 typedef	struct s_flags 
 {
@@ -14,12 +14,14 @@ typedef	struct s_flags
 	int precision_flag;
 	int width;
 	int coversion;
+	int printed;
 } t_flags;
-int handle_char(int c, t_flags *f);
+int	ft_printf(const char *fmt, va_list args); //change to elipsis later
+int handle_char(t_flags *f, int c);
 int handle_str(char *str, t_flags *f);
 int handle_ptr(unsigned long long addr, t_flags *f);
-int print_nbr(int n, t_flags *f);
-int print_hex(unsigned int n, t_flags *f, char c);
+int handle_nbr(int n, t_flags *f);
+int handle_hex(unsigned int n, t_flags *f, char c);
 int check_valid(const char *fmt);
 int print_width(t_flags *f, int n);
 int putnstr(t_flags *f, char *str, int n);

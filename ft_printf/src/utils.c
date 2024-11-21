@@ -25,7 +25,7 @@ int check_valid(const char *fmt)
 		fmt++;
 	while (*fmt && ft_isdigit(*fmt))
 		fmt++;
-	if (ft_strchr(CONVERSIONS, *fmt))
+	if (*fmt && ft_strchr(CONVERSIONS, *fmt))
 		return 1;
 	return 0;
 }

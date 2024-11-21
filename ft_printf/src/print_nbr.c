@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	print_nbr(int n, t_flags *f)
+int	handle_nbr(int n, t_flags *f)
 {
 	(void) f;
 	(void) n;

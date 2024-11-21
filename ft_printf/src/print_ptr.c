@@ -1,5 +1,38 @@
 #include "ft_printf.h"
 
+int put_ptr(unsigned long long addr, t_flags *f, char *s)
+{
+
+	(void) addr;
+	(void) f;
+	(void) s;
+	return 0;
+}
+
+int handle_ptr(unsigned long long addr, t_flags *f)
+{
+	int count;
+	(void) addr;
+	(void) f;
+
+	count = 0;
+	// f->alt_form = 1;
+	// if (!addr)
+	// {
+	// 	f->precision_flag = 0;
+	// 	count += handle_null(f, "(nil)");
+	// }
+	// if (f->space_flag && !f->force_sign)
+	// {
+	// 	count += ft_putchar_fd(' ', 1);
+	// 	f->width--;
+	// }
+	// if (f->force_sign)
+	// 	count += put_ptr(addr, f, "+0x");
+	// else 
+	// 	count += put_ptr(addr, f, "0x");
+	return count;
+}
 
 // |0x55f447d8d004|
 // | 0x55f447d8d004|

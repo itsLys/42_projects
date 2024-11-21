@@ -8,8 +8,8 @@ void parse_flags(const char *fmt, t_flags *f)
 		f->alt_form = 1;
 	else if (*fmt == '0')
 	{
-		if (!f->left_adjusted)
-			f->zero_padded = 1;
+	if (!f->left_adjusted)
+		f->zero_padded = 1;
 	}
 	else if (*fmt == '-')
 	{
@@ -38,75 +38,77 @@ int parse_integer(const char *fmt, int *n)
 	return count;
 }
 
-int print_conversion(char c, va_list args, t_flags *f)
+void print_conversion(char c, va_list args, t_flags *f)
 {
-	int count = 0;
-
 	if (c == 'c')
-		count += handle_char(va_arg(args, int), f);
+	{
+		f->printed += handle_char(f, va_arg(args, int));
+	}
 	else if (c == 's')
 	{
 		// f->zero_padded = 0;
-		count += handle_str(va_arg(args, char *), f);
+		f->printed += handle_str(va_arg(args, char *), f);
 	}
 	else if (c == 'p')
-		count += handle_ptr(va_arg(args, unsigned long long), f);
+		f->printed += handle_ptr(va_arg(args, unsigned long long), f);
 	else if (c == 'd' || c == 'i')
-		count += print_nbr(va_arg(args, int), f);
+		f->printed += handle_nbr(va_arg(args, int), f);
 	else if (c == 'u')
 	{
-		f->force_sign = 0;
-		count += print_nbr(va_arg(args, unsigned int), f);
-	}
+	f->force_sign = 0;
+	f->printed += handle_nbr(va_arg(args, unsigned int), f);
+}
 	else if (c == 'x' || c == 'X')
-		count += print_hex(va_arg(args, unsigned int), f, c);
+		f->printed += handle_hex(va_arg(args, unsigned int), f, c);
 	else if (c == '%')
-		count += ft_putchar_fd('%', 1);
-	return (count);
+		f->printed += ft_putchar_fd('%', 1);
+	else
+		return;
 }
 
-
-int parse_fmt(const char *fmt, va_list args, t_flags *f)
+void parse_fmt(const char *fmt, va_list args, t_flags *f)
 {
-	int count;
-
-	count = 0;
 	while (*fmt && ft_strchr(FLAGS, *fmt))
 		parse_flags(fmt++, f);
-	if (*fmt && ft_isdigit(*fmt))
+	if (ft_isdigit(*fmt))
 		fmt += parse_integer(fmt, &(f->width));
-	if (*fmt && *fmt == '.')
+	if (*fmt == '.')
 	{
 		fmt++;
 		f->precision_flag = 1;
 		fmt += parse_integer(fmt, &(f->precision_value));
 	}
-	f->coversion = *(fmt++);
-	count += print_conversion(*fmt, args, f);
-	return count;
+	f->coversion = *fmt;
+	print_conversion(*fmt, args, f);
 }
 
 int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 {
-	int count = 0;
+	int count;
 	t_flags f;
 
+	count = 0;
 	while (*fmt)
 	{
 		if (*fmt != '%')
+		{
 			count += ft_putchar_fd(*fmt, 1);
+			fmt++;
+		}
 		else
 		{
-			fmt++;
-			if (check_valid(fmt))
+			if (check_valid(++fmt))
 			{
 				ft_memset(&f, 0, sizeof(f));
-				count += parse_fmt(fmt, args, &f);
+				parse_fmt(fmt, args, &f);
+				fmt += f.printed;
+				count += f.printed;
+				printf("::::count:		%d\n", count);
+				printf("::::fmt:		%d\n", *fmt);
 			}
 			else
 				continue;
 		}
-		fmt++;
 	}
 	va_end(args);
 	return count;
