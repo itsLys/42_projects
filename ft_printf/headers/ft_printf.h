@@ -15,6 +15,7 @@ typedef	struct s_flags
 	int width;
 	int coversion;
 	int printed;
+	int total;
 } t_flags;
 int	ft_printf(const char *fmt, va_list args); //change to elipsis later
 int handle_char(t_flags *f, int c);

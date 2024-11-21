@@ -25,7 +25,7 @@ void parse_flags(const char *fmt, t_flags *f)
 	}
 }
 
-int parse_integer(const char *fmt, int *n)
+int parse_integer(const char *fmt, int *n, t_flags *f)
 {
 	int count = 0;
 
@@ -34,6 +34,7 @@ int parse_integer(const char *fmt, int *n)
 	{
 		count++;
 		fmt++;
+		f->total++;
 	}
 	return count;
 }
@@ -69,16 +70,21 @@ void print_conversion(char c, va_list args, t_flags *f)
 void parse_fmt(const char *fmt, va_list args, t_flags *f)
 {
 	while (*fmt && ft_strchr(FLAGS, *fmt))
+	{
 		parse_flags(fmt++, f);
+		f->total++;
+	}
 	if (ft_isdigit(*fmt))
-		fmt += parse_integer(fmt, &(f->width));
+		fmt += parse_integer(fmt, &(f->width), f);
 	if (*fmt == '.')
 	{
 		fmt++;
+		f->total++;
 		f->precision_flag = 1;
-		fmt += parse_integer(fmt, &(f->precision_value));
+		fmt += parse_integer(fmt, &(f->precision_value), f);
 	}
 	f->coversion = *fmt;
+	f->total++;
 	print_conversion(*fmt, args, f);
 }
 
@@ -101,10 +107,8 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 			{
 				ft_memset(&f, 0, sizeof(f));
 				parse_fmt(fmt, args, &f);
-				fmt += f.printed;
+				fmt += f.total;
 				count += f.printed;
-				printf("::::count:		%d\n", count);
-				printf("::::fmt:		%d\n", *fmt);
 			}
 			else
 				continue;
