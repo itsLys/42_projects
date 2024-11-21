@@ -1,11 +1,4 @@
-#include "ft_printf.h"
-#include <stdio.h>
-#include <assert.h>
-int get_case(void)
-{
-	static int i;
-	return i++;
-}
+#include "test.h"
 
 
 void test_check_valid(char *fmt, int exp)
