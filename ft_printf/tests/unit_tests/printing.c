@@ -1,4 +1,5 @@
 #include "test.h"
+
 void test_printf(const char  *fmt, ...)
 {
     int pf, ftpf;
@@ -10,8 +11,8 @@ void test_printf(const char  *fmt, ...)
     printf("-----------\n");
     printf("case:    %d\n", get_case());
     printf("printf:\n");
+	printf("ft_printf:\n");
     pf = vprintf(fmt, args);
-    printf("ft_printf:\n");
     ftpf = ft_printf(fmt, ftargs);
     printf("pf:		%d\n", pf);
     printf("ftpf:	%d\n", ftpf);

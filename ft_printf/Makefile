@@ -1,4 +1,4 @@
-NAME		= ft_printf.a 
+NAME		= libftprintf.a 
 LIBFT		= libft/libft.a
 LIBFTDIR	= libft/
 CC 			= cc -c -Wall -Wextra -Werror
@@ -20,7 +20,7 @@ RM			= rm -rf
 
 
 all: $(NAME)
-
+	cp -p $(NAME) tests/unit_tests/$(NAME)
 $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(GREEN)ft_printf done!$(RESET)"
 
