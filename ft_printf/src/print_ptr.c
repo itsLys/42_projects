@@ -1,37 +1,60 @@
 #include "ft_printf.h"
+#include <stdio.h>
+#define BASE 16
 
-int put_ptr(unsigned long long addr, t_flags *f, char *s)
+int print_addr_digits(unsigned long long addr, t_flags *f, int n)
 {
+	char str[16];
+	char *hexdigits;
+	int count;
+	int i;
 
-	(void) addr;
-	(void) f;
-	(void) s;
-	return 0;
+	count = 0;
+	i = 0;
+	hexdigits = "0123456789abcdef";
+	if (f->precision_value > n)
+		n = f->precision_value;
+	while (n--)
+	{
+		// printf("\nprecision value:	%d\n", f->precision_value);
+		// printf("\nn:			%d\n", n);
+		str[i] = hexdigits[addr % BASE];
+		i++;
+		addr /= BASE;
+	}
+	str[i++] = 'x';
+	str[i++] = '0';
+	while (i-- > 0)
+		count += ft_putchar_fd(str[i], 1);
+	return (count);
+}
+
+int print_addr(unsigned long long addr, t_flags *f, int n)
+{
+	int count;
+
+	count = 0;
+	if (f->precision_value > n)
+		n = f->precision_value;
+	if (!f->left_adjusted)
+		count += print_width(f, n + 2);
+	count += print_addr_digits(addr, f, n);
+	if (f->left_adjusted)
+		count += print_width(f, n + 2);
+	return (count);
 }
 
 int handle_ptr(unsigned long long addr, t_flags *f)
 {
 	int count;
-	(void) addr;
-	(void) f;
+	int numlen;
 
-	count = 0;
-	// f->alt_form = 1;
-	// if (!addr)
-	// {
-	// 	f->precision_flag = 0;
-	// 	count += handle_null(f, "(nil)");
-	// }
-	// if (f->space_flag && !f->force_sign)
-	// {
-	// 	count += ft_putchar_fd(' ', 1);
-	// 	f->width--;
-	// }
-	// if (f->force_sign)
-	// 	count += put_ptr(addr, f, "+0x");
-	// else 
-	// 	count += put_ptr(addr, f, "0x");
-	return count;
+	numlen = get_num_len(addr, 16);
+	if (!addr)
+		count = handle_null(f, "(nil)");
+	else
+		count = print_addr(addr, f, numlen);
+	return (count);
 }
 
 // |0x55f447d8d004|

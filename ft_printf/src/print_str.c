@@ -29,14 +29,12 @@ int handle_precision(t_flags *f, char *str)
 	return count;
 }
 
-int	handle_null_str(t_flags *f)
+int	handle_null(t_flags *f, char *str)
 {
 	int count;
-	char *str;
 	int slen;
 
 	count = 0;
-	str = "(null)";
 	slen = ft_strlen(str);
 	if (f->precision_flag && f->precision_value >= 0 && f->precision_value < (int) slen)
 		count += print_width(f, 0);
@@ -52,7 +50,7 @@ int handle_str(char *str, t_flags *f)
 
 	count = 0;
 	if (!str)
-		count += handle_null_str(f);
+		count += handle_null(f, "(null)");
 	else
 		count += handle_precision(f, str);
 	return count;
