@@ -13,3 +13,8 @@
 			for `X` conversions resault has the string "0X" 
 			For a, A, e, E, f, F, g, and G conversions, the result will always contain a decimal point.
 	
+
+
+
+
+a % that comes before e \0 always returns -1:::???
