@@ -88,4 +88,59 @@ int main(void)
 	test_printf("|%c %c %c|\n", 'X', -1, 300);    // Valid and undefined character values
 	test_printf("|%c %c|\n", 'Y', '\0');          // Printable and null character
 	test_printf("|%c %c %c|\n", 128, 255, 'Z');  // High ASCII and valid characters
+	//
+	// Reapeated flags
+	test_printf("|%--c|\n", 'A');         // Repeated '-' (undefined)
+	test_printf("|%++c|\n", 'B');         // Repeated '+' (undefined)
+	test_printf("|%00c|\n", 'C');         // Repeated '0' (undefined)
+	test_printf("|%  c|\n", 'D');         // Repeated space (redundant, valid but pointless)
+	test_printf("|%  -c|\n", 'E');        // Space and repeated '-' (undefined)
+
+	test_printf("|%-0-5c|\n", 'F');       // Conflicting and repeated '-' and '0' (undefined)
+	test_printf("|%00-5c|\n", 'G');       // Conflicting and repeated '0' with '-' (undefined)
+	test_printf("|% 0- c|\n", 'H');       // Space, '0', and '-' combined (undefined)
+	test_printf("|%---c|\n", 'I');        // Multiple '-' flags (undefined)
+
+	// Incorrect order
+	test_printf("|%0-.5c|\n", 'J');       // Precision before flag '0' (undefined for %c)
+	test_printf("|%5-.c|\n", 'K');        // Width, then flag '-', then precision (undefined)
+	test_printf("|%.5-5c|\n", 'L');       // Precision with width after '-' (undefined)
+	test_printf("|%-0.c|\n", 'M');        // Conflicting flags and precision (undefined)
+	test_printf("|%0#-c|\n", 'N');        // Conflicting and invalid flags '#' and '0' (undefined)
+
+	test_printf("|%05c|\n", 'O');         // Valid width with '0', but '0' has no effect (undefined for %c)
+	test_printf("|%0-5c|\n", 'P');        // Conflicting '0' and '-' with width (undefined)
+	test_printf("|%-#c|\n", 'Q');         // '-' with invalid '#' flag (undefined)
+	test_printf("|%+0c|\n", 'R');         // '+' and '0' flags (undefined for %c)
+	test_printf("|%#-5c|\n", 'S');        //
+
+	test_printf("|%-0-5c|\n", 65);        // ASCII for 'A', invalid order of flags
+	test_printf("|%--0c|\n", 66);         // ASCII for 'B', multiple flags in wrong order
+	test_printf("|%-.5c|\n", 67);         // ASCII for 'C', precision before '-' (undefined)
+	test_printf("|%.0-5c|\n", 68);        // ASCII for 'D', precision with '-' and width (undefined)
+	test_printf("|%5-.2c|\n", 69);        // ASCII for 'E', width and precision misordered
+
+
+	// Width a precision
+	test_printf("|%5c|\n", 'T');          // Right-justified with width
+	test_printf("|%-5c|\n", 'U');         // Left-justified with width
+	test_printf("|%.5c|\n", 'V');         // Precision specified for %c (undefined)
+	test_printf("|%5.3c|\n", 'W');        // Width with precision (undefined)
+	test_printf("|%-5.2c|\n", 'X');       // Left-justified with precision (undefined)
+
+	//
+	test_printf("|%0.5c|\n", 'Y');        // Flag '0' with precision (undefined for %c)
+	test_printf("|%5.c|\n", 'Z');         // Width with empty precision (undefined)
+	test_printf("|%-.5c|\n", 'A');        // '-' with precision (undefined)
+	test_printf("|%5-.c|\n", 'B');        // Width, then '-' and precision (undefined)
+	//
+	test_printf("|%-0-#5c|\n", 'F');      // Multiple conflicting flags and width (undefined)
+	test_printf("|%5.0c|\n", 'G');        // Width with precision set to zero (undefined)
+	test_printf("|%-0#-.5c|\n", 'H');     // Confusing combination of flags and precision (undefined)
+	printf(":::::CHECK VALID\n");
+	test_printf("|%0-5-.c|\n", 'I');      // Mixed order: '0', '-', width, precision (undefined)
+	test_printf("|%-#05.3c|\n", 'J');     // Undefined with all invalid flags combined
+
+
+
 }
