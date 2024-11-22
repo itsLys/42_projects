@@ -47,7 +47,7 @@ void print_conversion(char c, va_list args, t_flags *f)
 	}
 	else if (c == 's')
 	{
-		// f->zero_padded = 0;
+		f->zero_padded = 0;
 		f->printed += handle_str(va_arg(args, char *), f);
 	}
 	else if (c == 'p')
@@ -97,10 +97,7 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 	while (*fmt)
 	{
 		if (*fmt != '%')
-		{
-			count += ft_putchar_fd(*fmt, 1);
-			fmt++;
-		}
+			count += ft_putchar_fd(*(fmt++), 1);
 		else
 		{
 			if (check_valid(++fmt))
@@ -111,7 +108,7 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 				count += f.printed;
 			}
 			else
-				continue;
+				count += ft_putchar_fd('%', 1);
 		}
 	}
 	va_end(args);

@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
 // n number of the characters that are already printed or to be printed;
 int print_width(t_flags *f, int n)

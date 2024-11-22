@@ -3,14 +3,16 @@
 int putnstr(t_flags *f, char *str, int n)
 {
 	int count;
+	int chars;
 
 	count = 0;
+	chars = n;
 	if (!f->left_adjusted)
-		count += print_width(f, n);
+		count += print_width(f, chars);
 	while (*str && n--)
 		count += ft_putchar_fd(*(str++), 1);
 	if (f->left_adjusted)
-		count += print_width(f, n);
+		count += print_width(f, chars);
 	return count;
 }
 
@@ -21,7 +23,7 @@ int handle_precision(t_flags *f, char *str)
 
 	count = 0;
 	slen = ft_strlen(str);
-	if (!f->precision_flag)
+	if (!f->precision_flag || f->precision_value > slen)
 		f->precision_value = slen;
 	count += putnstr(f, str, f->precision_value);
 	return count;
@@ -39,7 +41,7 @@ int	handle_null_str(t_flags *f)
 	if (f->precision_flag && f->precision_value >= 0 && f->precision_value < (int) slen)
 		count += print_width(f, 0);
 	else
-		handle_precision(f, str);
+		count += handle_precision(f, str);
 	return count;
 }
 
