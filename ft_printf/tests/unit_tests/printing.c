@@ -14,7 +14,7 @@ void test_printf(const char  *fmt, ...)
 	printf("ft_printf:\n");
     pf = vprintf(fmt, args);
     ftpf = ft_printf(fmt, ftargs);
-    printf("pf:		%d\n", pf);
+    printf("pf:	%d\n", pf);
     printf("ftpf:	%d\n", ftpf);
 
     assert(pf == ftpf);
