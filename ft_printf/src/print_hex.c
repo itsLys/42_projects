@@ -46,7 +46,10 @@ int print_hexadecimal(unsigned int x, t_flags *f, int len, char c)
 		len = f->precision_value;
 	if (f->alt_form)
 		len += 2;
-	if (!f->left_adjusted)
+	if (f->zero_padded && f->width > len)
+		len = f->width;
+	else
+		if (!f->left_adjusted)
 		count = print_width(f, len);
 	count += print_hex_digits(x, f, len, hexdigits);
 	if (f->left_adjusted)
