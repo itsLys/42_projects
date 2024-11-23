@@ -11,7 +11,7 @@ int print_unsigned_digits(unsigned num, t_flags *f, int len)
 
 	count = 0;
 	i = 0;
-	if (f->precision_flag && !f->precision_value)
+	if (!num && f->precision_flag && !f->precision_value)
 		return (0);
 	buff = malloc(len);
 	while (len--)
@@ -39,8 +39,6 @@ int print_unsigned(unsigned num, t_flags *f, int len)
 		count += print_width(f, len);
 	return (count);
 }
-// 00000000000000000000000000000000000000000000012345 
-// 00000000000000000000000000000000000000000000012345
 
 int handle_unsigned(unsigned int u, t_flags *f)
 {
