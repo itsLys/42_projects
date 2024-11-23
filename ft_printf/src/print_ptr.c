@@ -1,31 +1,32 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <stdlib.h>
 #define BASE 16
 
 int print_addr_digits(unsigned long long addr, t_flags *f, int n)
 {
-	char str[16];
+	char *buff;
 	char *hexdigits;
 	int count;
 	int i;
 
 	count = 0;
 	i = 0;
-	hexdigits = "0123456789abcdef";
+	hexdigits = "0123456789abcdef"; // used it 1 time, remove
 	if (f->precision_value > n)
 		n = f->precision_value;
+	buff = malloc(n);
 	while (n--)
 	{
-		// printf("\nprecision value:	%d\n", f->precision_value);
-		// printf("\nn:			%d\n", n);
-		str[i] = hexdigits[addr % BASE];
+		buff[i] = hexdigits[addr % BASE];
 		i++;
 		addr /= BASE;
 	}
-	str[i++] = 'x';
-	str[i++] = '0';
+	buff[i++] = 'x';
+	buff[i++] = '0';
 	while (i-- > 0)
-		count += ft_putchar_fd(str[i], 1);
+		count += ft_putchar_fd(buff[i], 1);
+	free(buff);
 	return (count);
 }
 
@@ -44,6 +45,24 @@ int print_addr(unsigned long long addr, t_flags *f, int n)
 	return (count);
 }
 
+int handle_null_ptr(t_flags *f)
+{
+	int count;
+	int nil_len;
+	char *str;
+
+	count = 0;
+	str = "(nil)";
+	nil_len = ft_strlen(str);
+	if (!f->left_adjusted)
+		count += print_width(f, nil_len);
+	ft_putstr_fd(str, 1);
+	count += nil_len;
+	if (f->left_adjusted)
+		count += print_width(f, nil_len);
+	return count;
+}
+
 int handle_ptr(unsigned long long addr, t_flags *f)
 {
 	int count;
@@ -51,38 +70,10 @@ int handle_ptr(unsigned long long addr, t_flags *f)
 
 	numlen = get_num_len(addr, 16);
 	if (!addr)
-		count = handle_null(f, "(nil)");
+		count = handle_null_ptr(f);
 	else
 		count = print_addr(addr, f, numlen);
 	return (count);
 }
-
-// |0x55f447d8d004|
-// | 0x55f447d8d004|
-// |(nil)|
-// |(nil)|
-// |                         (nil)|
-// |      0x55f447d8d004|
-// |0x55f447d8d004      |
-// |     +0x55f447d8d004|
-// |0x00000055f447d8d004|
-// |+0x0000055f447d8d004|
-// |+0x0000000055f447d8d004|
-// |        0x0000000055f447d8d004|
-// |                 +0x0000000055f447d8d004|
-// if zero_flag exist
-// 	print 0x, width - 2, and addr
-// if !zero_flag 
-// 	print width, and addr
-// if left adjusted
-// 	print addr and width
-// if precision exist
-// 	print 0x and 0s and addrs precision times
-// if force sign
-// 	prefix '+'
-// if space 
-// 	prefix ' '
-// if ptr == null
-// 	print (nil)
 
 // TODO: Only printing is remaining, keep going

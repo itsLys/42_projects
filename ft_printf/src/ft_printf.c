@@ -1,5 +1,3 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "ft_printf.h"
 
 void parse_flags(const char *fmt, t_flags *f)

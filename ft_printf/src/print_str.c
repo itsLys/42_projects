@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int putnstr(t_flags *f, char *str, int n)
+int printnstr(t_flags *f, char *str, int n)
 {
 	int count;
 	int chars;
@@ -16,30 +16,32 @@ int putnstr(t_flags *f, char *str, int n)
 	return count;
 }
 
-int handle_precision(t_flags *f, char *str)
+int handle_str_precision(t_flags *f, char *str)
 {
 	int count;
 	int slen;
 
 	count = 0;
 	slen = ft_strlen(str);
-	if (!f->precision_flag || f->precision_value > slen)
+	if (!f->precision_flag)
 		f->precision_value = slen;
-	count += putnstr(f, str, f->precision_value);
+	count += printnstr(f, str, f->precision_value);
 	return count;
 }
 
-int	handle_null(t_flags *f, char *str)
+int	handle_null_str(t_flags *f)
 {
 	int count;
+	char *str;
 	int slen;
 
 	count = 0;
+	str = "(null)";
 	slen = ft_strlen(str);
 	if (f->precision_flag && f->precision_value >= 0 && f->precision_value < (int) slen)
 		count += print_width(f, 0);
 	else
-		count += handle_precision(f, str);
+		count += handle_str_precision(f, str);
 	return count;
 }
 
@@ -50,9 +52,9 @@ int handle_str(char *str, t_flags *f)
 
 	count = 0;
 	if (!str)
-		count += handle_null(f, "(null)");
+		count += handle_null_str(f);
 	else
-		count += handle_precision(f, str);
+		count += handle_str_precision(f, str);
 	return count;
 }
 // calculate how many charachters are yu printing in total: field width
