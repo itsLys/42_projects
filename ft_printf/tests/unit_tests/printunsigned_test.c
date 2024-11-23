@@ -10,6 +10,7 @@ int main() {
 
     // Basic Tests
     test_printf("|%u|\n", num1);               // Basic unsigned
+    test_printf("|%.0u|\n", num1);               // Basic unsigned
     test_printf("|%-u|\n", num1);              // Left-justified with '-'
     test_printf("|%05u|\n", num1);             // Zero-padded with width
     test_printf("|%5u|\n", num1);              // Right-justified with width

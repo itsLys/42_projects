@@ -5,7 +5,7 @@ OBJ = get_case.o printing.o
 
 all: $(NAME)
 	make -C ../../ re
-	cc printunsigned_test.c $(NAME) libftprintf.a -I./../../headers -I./../../libft/headers/
+	cc printhex_test.c $(NAME) libftprintf.a -I./../../headers -I./../../libft/headers/
 
 $(NAME): $(OBJ)
 
