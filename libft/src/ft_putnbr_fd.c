@@ -40,14 +40,15 @@ static size_t	write_num(char *buf, int n)
 	return (i);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
 	char	str[12];
 	size_t	bytes;
+	int count;
 
 	bytes = write_num(str, n);
+	count = 0;
 	while (bytes--)
-	{
-		ft_putchar_fd(str[bytes], fd);
-	}
+		count += ft_putchar_fd(str[bytes], fd);
+	return (count);
 }
