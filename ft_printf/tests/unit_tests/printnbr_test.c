@@ -18,7 +18,6 @@ int main()
     test_printf("|%-5d|\n", num2);             // Left-justified with width
     test_printf("|%.5d|\n", num1);             // Precision greater than number length
     test_printf("|%10.5d|\n", num1);           // Combined width and precision
-    test_printf("|%-10.5d|\n", num2);          // Left-justified with width and precision
     test_printf("|%.0d|\n", 0);                // Precision 0 with 0 value (prints nothing)
 
     // Edge Cases
@@ -45,7 +44,6 @@ int main()
     test_printf("|%100d|\n", num1);            // Very large width
     test_printf("|%-100d|\n", num2);           // Left-justified very large width
     test_printf("|%100.50d|\n", num1);         // Combined large width and excessive precision
-    test_printf("|%-100.50d|\n", num2);        // Left-justified large width and excessive precision
 
     // Multiple Arguments
     test_printf("|%d%d%d|\n", num1, num2, 0);  // Multiple decimal arguments
@@ -60,4 +58,10 @@ int main()
     test_printf("|%-.5d|\n", num1);            // Precision before '-' (undefined)
     test_printf("|%.0-5d|\n", num1);           // Precision and width in wrong order (undefined)
     test_printf("|%5-.d|\n", num2);            // Width, then '-' and precision (undefined)
+	printf("--------------H\n");
+	test_printf("|%-100.50d|\n", num2);        // Left-justified large width and excessive precision
+	test_printf("|%-10.5d|\n", num2);//////////// Left-justified with width and precision
+	test_printf("|%-10.6d|\n", num2);//////////// Left-justified with width and precision
+	test_printf("|%-10.7d|\n", num2);//////////// Left-justified with width and precision
+	///
 }
