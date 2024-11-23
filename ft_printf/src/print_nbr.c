@@ -26,7 +26,6 @@ char *handle_nbr_flags(t_flags *f, long num, int len, int sign)
 		str[--i] = '+';
 	else if (f->space_flag && sign > 0)
 		str[--i] = ' ';
-	str[++i] = '\0';
 	return str;
 }
 

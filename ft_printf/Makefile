@@ -5,7 +5,7 @@ CC 			= cc -c -Wall -Wextra -Werror
 AR			= ar rcs
 INCLUDES	= -I./headers -I./libft/headers
 
-SRC			= ft_printf.c print_char.c print_hex.c print_nbr.c print_ptr.c print_str.c print_width.c utils.c
+SRC			= ft_printf.c print_char.c print_hex.c print_nbr.c print_ptr.c print_str.c print_unsigned.c print_width.c utils.c
 OBJDIR		= obj
 SRCDIR		= src
 OBJ 		= $(addprefix $(OBJDIR)/, $(SRC:.c=.o))

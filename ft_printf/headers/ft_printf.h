@@ -30,3 +30,4 @@ int handle_str_precision(t_flags *f, char *str);
 int	handle_null_str(t_flags *f);
 int check_valid(const char *fmt);
 int get_num_len(unsigned long long n, unsigned base);
+int handle_unsigned(unsigned int u, t_flags *f); 

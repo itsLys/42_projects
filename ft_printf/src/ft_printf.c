@@ -53,10 +53,7 @@ void print_conversion(char c, va_list args, t_flags *f)
 	else if (c == 'd' || c == 'i')
 		f->printed += handle_nbr(va_arg(args, int), f);
 	else if (c == 'u')
-	{
-		f->force_sign = 0;
-		f->printed += handle_nbr(va_arg(args, unsigned int), f);
-	}
+		f->printed += handle_unsigned(va_arg(args, unsigned int), f);
 	else if (c == 'x' || c == 'X')
 		f->printed += handle_hex(va_arg(args, unsigned int), f, c);
 	else if (c == '%')
