@@ -5,6 +5,7 @@ int main() {
 	unsigned int num1 = 0x1A3F;    // Hexadecimal number (uppercase: 1A3F, lowercase: 1a3f)
 	unsigned int num2 = 0;         // Zero value
 	unsigned int max_uint = 0xFFFFFFFF; // Maximum 32-bit unsigned integer
+	
 	test_printf("|%x|\n", num1);             // Lowercase hex
 	test_printf("|%X|\n", num1);             // Uppercase hex
 	test_printf("|%#x|\n", num1);            // Alternate form with "0x"
@@ -52,11 +53,11 @@ int main() {
 	test_printf("|%+#0x|\n", num1);          // Undefined combination of flags
 	test_printf("|%-+0x|\n", num1);          // Undefined combination of flags
 	test_printf("|%#-0x|\n", num1);          // '#' with '-' and '0'
-	test_printf("|%x\n", LONG_MAX);
-	test_printf("|%x\n", ULONG_MAX);
-	test_printf("|%x\n", 9223372036854775807LL);
-	test_printf("|%x\n", INT_MAX);
-	test_printf("|%x\n", INT_MIN);
+	test_printf("|%x|\n", LONG_MAX);
+	test_printf("|%x|\n", ULONG_MAX);
+	test_printf("|%x|\n", 9223372036854775807LL);
+	test_printf("|%x|\n", INT_MAX);
+	test_printf("|%x|\n", INT_MIN);
 	test_printf("|%-1x|\n", 0);
 	test_printf("|%-4x|\n", 9);
 	test_printf("|%-1x|\n", 10);
