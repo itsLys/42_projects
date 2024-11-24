@@ -41,6 +41,7 @@ void print_conversion(char c, va_list args, t_flags *f)
 {
 	if (c == 'c')
 	{
+		f->zero_padded = 0;
 		f->printed += handle_char(f, va_arg(args, int));
 	}
 	else if (c == 's')
