@@ -98,5 +98,17 @@ int main() {
 	test_printf("|%-5.0x|\n", 0);
 	test_printf("|%-5.x|\n", 0);
 	test_printf("|%X %X %X %X %X %X %X|\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	test_printf("|%x|\n", -1);
+	test_printf("|%x|\n", 10);
+	test_printf("|%x|\n", 11);
+	test_printf("|%x|\n", 15);
+	test_printf("|%x|\n", -9);
+	test_printf("|%x|\n", -10);
+	test_printf("|%x|\n", -11);
+	test_printf("|%x|\n", -14);
+	test_printf("|%x|\n", -15);
+	test_printf("|%x|\n", -16);
+	test_printf("|%x|\n", -99);
+	test_printf("|%x|\n", -100);
 	return 0;
 }

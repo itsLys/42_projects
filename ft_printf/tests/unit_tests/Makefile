@@ -2,8 +2,8 @@ NAME = test.a
 
 SRC = get_case.c printing.a
 OBJ = get_case.o printing.o
-TEST = printhex_test.c printstr_test.c printnbr_test.c printchar_test.c printptr_test.c 
-EXEC = printhex.out printchar.out printstr.out printnbr.out printptr.out
+TEST = printhex_test.c printstr_test.c printnbr_test.c printchar_test.c printptr_test.c printunsigned_test.c other_test.c 
+EXEC = printhex.out printchar.out printstr.out printnbr.out printptr.out printunsigned.out other.out
 
 all: $(NAME) $(EXEC)
 

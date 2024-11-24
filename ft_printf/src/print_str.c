@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
 int printnstr(t_flags *f, char *str, int len)
 {
@@ -23,7 +24,7 @@ int handle_str_precision(t_flags *f, char *str)
 
 	count = 0;
 	len = ft_strlen(str);
-	if (f->precision_flag)
+	if (f->precision_flag && f->precision_value < len)
 		len = f->precision_value;
 	count += printnstr(f, str, len);
 	return count;
@@ -38,7 +39,7 @@ int	handle_null_str(t_flags *f)
 	count = 0;
 	str = "(null)";
 	slen = ft_strlen(str);
-	if (f->precision_flag && f->precision_value >= 0 && f->precision_value < (int) slen)
+	if (f->precision_flag && f->precision_value >= 0 && f->precision_value < slen)
 		count += print_width(f, 0);
 	else
 		count += handle_str_precision(f, str);
