@@ -34,7 +34,7 @@ int main()
 	test_printf("|%100s|\n", "Short string");        // Very large width with short string
 	test_printf("|%-100s|\n", "Left-justified long width"); // Large width left-justified
 	test_printf("|%100.20s|\n", "Short and truncated Hello"); // Large width and small precision
-	test_printf("|%100.20s|\n", "Short and truncated"); // Large width and small precision
+	test_printf("|%100.20s|\n", "Short"); // Large width and small precision
 	test_printf("|%-100.20s|\n", "Left, width and truncated"); // Large width, small precision
 	test_printf("|%s%s%s|\n", "A", "B", "C");        // Multiple strings back-to-back
 	test_printf("|%20s%-20s%.5s|\n", "First", "Second", "Third"); // Mixed width, flags, and precision

@@ -1,31 +1,31 @@
 #include "ft_printf.h"
 
-int printnstr(t_flags *f, char *str, int n)
+int printnstr(t_flags *f, char *str, int len)
 {
 	int count;
-	int chars;
+	int n;
 
 	count = 0;
-	chars = n;
+	n = len;
 	if (!f->left_adjusted)
-		count += print_width(f, chars);
-	while (*str && n--)
+		count += print_width(f, len);
+	while (n-- && *str)
 		count += ft_putchar_fd(*(str++), 1);
 	if (f->left_adjusted)
-		count += print_width(f, chars);
+		count += print_width(f, len);
 	return count;
 }
 
 int handle_str_precision(t_flags *f, char *str)
 {
 	int count;
-	int slen;
+	int len;
 
 	count = 0;
-	slen = ft_strlen(str);
-	if (!f->precision_flag)
-		f->precision_value = slen;
-	count += printnstr(f, str, f->precision_value);
+	len = ft_strlen(str);
+	if (f->precision_flag)
+		len = f->precision_value;
+	count += printnstr(f, str, len);
 	return count;
 }
 
@@ -57,12 +57,3 @@ int handle_str(char *str, t_flags *f)
 		count += handle_str_precision(f, str);
 	return count;
 }
-// calculate how many charachters are yu printing in total: field width
-// calculate how many charachters from th string are you printing: precision
-// determine if it is left or right adjusted: `-`
-//
-
-// if precision exists and < strlen("(null)")
-// 	print_nothing;
-//
-//
