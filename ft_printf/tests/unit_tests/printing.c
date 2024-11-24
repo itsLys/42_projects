@@ -8,6 +8,7 @@ void test_printf(const char  *fmt, ...)
 
     va_start(args, fmt);
     va_start(ftargs, fmt);
+    printf("\n");
     printf("-----------\n");
     printf("case:    %d\n", get_case());
     printf("printf:\n");
