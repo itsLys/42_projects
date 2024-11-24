@@ -1,52 +1,58 @@
 #include "ft_printf.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-char *handle_nbr_flags(t_flags *f, long num, int len, int sign)
+int handle_nbr_flags(t_flags *f, long num, int len, int sign)
 {
-	char *str;
-	int total;
+	char *buff;
 	int i;
+	int count;
 
-	if (f->precision_flag && !f->precision_value)
-		return (ft_strdup(""));
-	total = len + (sign < 0) + ((sign > 0) * (f->space_flag || f->force_sign));
+	if (!num && f->precision_flag && !f->precision_value)
+		return 0;
+	count = 0;
 	i = 0;
-	if (f->precision_value >= total)
-		total = f->precision_value + (sign < 0);
-	str = ft_calloc((total + 1), 1);
-	while (total--)
+	buff = malloc(len);
+	while (len--)
 	{
-		str[i++] = "0123456789"[num % 10]; // BASE VAR
+		buff[i++] = "0123456789"[num % 10]; // BASE VAR
 		num /= 10;
 	}
 	if (sign < 0)
-		str[--i] = '-';
+		buff[i - 1] = '-';
 	else if (f->force_sign && sign > 0)
-		str[--i] = '+';
+		buff[i - 1] = '+';
 	else if (f->space_flag && sign > 0)
-		str[--i] = ' ';
-	return str;
+		buff[i - 1] = ' ';
+	while (i-- > 0)
+		count += ft_putchar_fd(buff[i], 1);
+	free(buff);
+	return count;
 }
 
 int print_nbr(long num, t_flags *f, int len, int sign)
 {
 	int count;
-	int total;
-	char *str;
-	int i;
 
-	str = handle_nbr_flags(f, num, len, sign);
-	total = ft_strlen(str);
 	count = 0;
-	i = total;
+	if (f->precision_value > len)
+		len = f->precision_value;
+	if (sign < 0 || f->force_sign || f->space_flag)
+		len += 1;
+	if (f->precision_flag && !f->precision_value && !num)
+		len = 0;
 	if (!f->left_adjusted)
-		count = print_width(f, total);
-	while (i-- > 0)
-		count += ft_putchar_fd(str[i], 1);
+	{
+		if (!f->precision_flag && f->zero_padded && f->width > len)
+			len = f->width;
+		else 
+		{
+			f->zero_padded = 0;
+			count = print_width(f, len);
+		}
+	}
+	count += handle_nbr_flags(f, num, len, sign);
 	if (f->left_adjusted)
-		count += print_width(f, total);
-	free(str);
+		count += print_width(f, len);
 	return count;
 }
 

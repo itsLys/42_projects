@@ -3,7 +3,7 @@
 #define BASE 16
 #include <stdlib.h>
 
-int print_hex_digits(unsigned int x, t_flags *f, int len, char* hexdigits)
+int print_hex_digits(unsigned int x, t_flags *f, int len, char* hexset)
 {
 	char *buff;
 	int count;
@@ -13,17 +13,15 @@ int print_hex_digits(unsigned int x, t_flags *f, int len, char* hexdigits)
 	i = 0;
 	if (!x && f->precision_flag && !f->precision_value)
 		return (0);
-	if (!x)
-		return ft_putchar_fd('0', 1);
 	buff = malloc(len);
 	while (len--)
 	{
-		buff[i++] = hexdigits[x % BASE];
+		buff[i++] = hexset[x % BASE];
 		x /= BASE;
 	}
 	if (f->alt_form)
 	{
-		buff[i-2] = hexdigits[BASE];
+		buff[i-2] = hexset[BASE];
 		buff[i-1] = '0';
 	}
 	while (i-- > 0)
@@ -32,26 +30,30 @@ int print_hex_digits(unsigned int x, t_flags *f, int len, char* hexdigits)
 	return count;
 }
 
-int print_hexadecimal(unsigned int x, t_flags *f, int len, char c)
+int print_hexadecimal(unsigned int x, t_flags *f, int len, char *hexset)
 {
 	int count;
-	char *hexdigits;
 
 	count = 0;
-	if (c == 'x')
-		hexdigits = "0123456789abcdefx";
-	else
-		hexdigits = "0123456789ABCDEFX";
 	if (f->precision_value > len)
 		len = f->precision_value;
-	if (f->alt_form)
+	if (f->alt_form && x)
 		len += 2;
-	if (f->zero_padded && f->width > len)
-		len = f->width;
-	else
-		if (!f->left_adjusted)
-		count = print_width(f, len);
-	count += print_hex_digits(x, f, len, hexdigits);
+	if (f->precision_flag && !f->precision_value && !x)
+		len = 0;
+	if (x == 0)
+		f->alt_form = 0;
+	if (!f->left_adjusted)
+	{
+		if (!f->precision_flag && f->zero_padded && f->width > len)
+			len = f->width;
+		else 
+		{
+			f->zero_padded = 0;
+			count = print_width(f, len);
+		}
+	}
+	count += print_hex_digits(x, f, len, hexset);
 	if (f->left_adjusted)
 		count += print_width(f, len);
 	return count;
@@ -61,7 +63,14 @@ int	handle_hex(unsigned int x, t_flags *f, char c)
 {
 	int count;
 	int numlen;
+	char *hexset;
+
+	if (c == 'x')
+		hexset = "0123456789abcdefx";
+	else
+		hexset = "0123456789ABCDEFX";
+
 	numlen = get_num_len(x, 16);
-	count = print_hexadecimal(x, f, numlen, c);
+	count = print_hexadecimal(x, f, numlen, hexset);
 	return (count);
 }
