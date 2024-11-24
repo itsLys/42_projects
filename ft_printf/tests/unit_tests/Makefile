@@ -19,10 +19,10 @@ $(NAME): $(OBJ)
 	ar rcs $(NAME) $@
 
 clean:
-	rm $(OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	rm $(EXEC)
+	rm -f $(EXEC)
 
 re: fclean
 	make all

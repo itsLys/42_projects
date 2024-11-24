@@ -1,4 +1,5 @@
 #include "test.h"
+#include <stdio.h>
 
 void test_printf(const char  *fmt, ...)
 {
@@ -10,13 +11,15 @@ void test_printf(const char  *fmt, ...)
     va_start(ftargs, fmt);
     printf("\n");
     printf("-----------\n");
-    printf("case:    %d\n", get_case());
-    printf("printf:\n");
-	printf("ft_printf:\n");
-    pf = vprintf(fmt, args);
+    printf("case:    	%d\n", get_case());
+    printf("printf:		");
+	pf = vprintf(fmt, args);
+	fflush(stdout);
+	printf("ft_printf:	");
+	fflush(stdout);
     ftpf = ft_printf(fmt, ftargs);
-    printf("pf:	%d\n", pf);
-    printf("ftpf:	%d\n", ftpf);
+    // printf("pf:		%d\n", pf);
+    // printf("ftpf:		%d\n", ftpf);
 
     assert(pf == ftpf);
     va_end(args);

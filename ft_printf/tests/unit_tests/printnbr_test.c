@@ -203,7 +203,6 @@ int main()
 	test_printf("|%5.i|\n", 0);
 	test_printf("|%-5.0i|\n", 0);
 	test_printf("|%-5.i|\n", 0);
-	printf("\n:::::::::::Hello::::::::::::::::;;\n");
 	test_printf("|%08.5i|\n", 34);
 	test_printf("|%010.5i|\n", -216);
 	test_printf("|%08.5i|\n", 0);
