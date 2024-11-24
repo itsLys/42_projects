@@ -6,29 +6,29 @@
 int print_addr_digits(unsigned long long addr, t_flags *f, int n)
 {
 	char *buff;
-	char *hexdigits;
 	int count;
 	int i;
 
 	count = 0;
 	i = 0;
-	hexdigits = "0123456789abcdef"; // used it 1 time, remove
 	if (f->precision_value > n)
 		n = f->precision_value;
 	buff = malloc(n);
 	while (n--)
 	{
-		buff[i] = hexdigits[addr % BASE];
-		i++;
+		buff[i++] = "0123456789abcdef"[addr % BASE];
 		addr /= BASE;
 	}
 	buff[i++] = 'x';
 	buff[i++] = '0';
+	if (f->force_sign)
+		buff[i++] = '+';
 	while (i-- > 0)
 		count += ft_putchar_fd(buff[i], 1);
 	free(buff);
 	return (count);
 }
+// TODO: Fix here, width, space and 0 padding not correct
 
 int print_addr(unsigned long long addr, t_flags *f, int n)
 {

@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int handle_nbr_flags(t_flags *f, long num, int len, int sign)
@@ -7,8 +8,6 @@ int handle_nbr_flags(t_flags *f, long num, int len, int sign)
 	int i;
 	int count;
 
-	if (!num && f->precision_flag && !f->precision_value)
-		return 0;
 	count = 0;
 	i = 0;
 	buff = malloc(len);
@@ -36,10 +35,10 @@ int print_nbr(long num, t_flags *f, int len, int sign)
 	count = 0;
 	if (f->precision_value > len)
 		len = f->precision_value;
-	if (sign < 0 || f->force_sign || f->space_flag)
-		len += 1;
 	if (f->precision_flag && !f->precision_value && !num)
 		len = 0;
+	if (sign < 0 || f->force_sign || f->space_flag)
+		len += 1;
 	if (!f->left_adjusted)
 	{
 		if (!f->precision_flag && f->zero_padded && f->width > len)

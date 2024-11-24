@@ -1,9 +1,8 @@
 #include "test.h"
-#include <limits.h>
-int main()
+
+int main(void)
 {
 
-		// long long long_min = -9223372036854775808LL;
 		test_printf("|42% 12.8d42|\n", 0);
 		test_printf("|^.^/%+44.16d^.^/|\n", 0);
 		test_printf("|!%+29.57d!|\n", 839186175);
@@ -14,17 +13,17 @@ int main()
 		test_printf("|%91p|\n", (void *)13930816918730035186lu);
 		test_printf("|%91p%--8.179x%--190c|\n", (void *)13930816918730035186lu, 505873219u, 9);
 		test_printf("|%-186.138i%85p%-113c%--87p|\n", -1320475933, (void *)11899625258064503923lu, -39, (void *)15206197846470084523lu);
-		test_printf("|%100d, %100d, %100d, %100d, %100d, %100d, %100d, %100d|\n", 0, 5, -1, -10, 100, -1862, int_min, int_max);
+		test_printf("|%100d, %100d, %100d, %100d, %100d, %100d, %100d, %100d|\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 		test_printf("| %04u |\n", 9);
 		test_printf("| %01u |\n", 10);
 		test_printf("| %04u |\n", 16);
 		test_printf("| %05u |\n", 17);
 		test_printf("| %01u |\n", 99);
-		test_printf("| %012u |\n", long_min);
-		test_printf("| %013u |\n", uint_max);
-		test_printf("| %014u |\n", ulong_max);
+		test_printf("| %012u |\n", LONG_MIN);
+		test_printf("| %013u |\n", UINT_MAX);
+		test_printf("| %014u |\n", ULONG_MAX);
 		test_printf("| %015u |\n", 9223372036854775807ll);
-		test_printf("| %09u %010u %011u %012u %013u %014u %015u|\n", int_max, int_min, long_max, long_min, ulong_max, 0, -42);
+		test_printf("| %09u %010u %011u %012u %013u %014u %015u|\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 		test_printf("| %01x |\n", 0);
 		test_printf("| %04x |\n", 9);
 		test_printf("| %01x |\n", 10);
@@ -33,13 +32,13 @@ int main()
 		test_printf("| %05x |\n", 17);
 		test_printf("| %01x |\n", 99);
 		test_printf("| %01x |\n", -9);
-		test_printf("| %010x |\n", int_min);
+		test_printf("| %010x |\n", INT_MIN);
 		test_printf("| %#x |\n", 0);
-		test_printf("| %#x |\n", long_min);
-		test_printf("| %#x %#x %#x %#x %#x %#x %#x|\n", int_max, int_min, long_max, long_min, ulong_max, 0, -42);
+		test_printf("| %#x |\n", LONG_MIN);
+		test_printf("| %#x %#x %#x %#x %#x %#x %#x|\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 		test_printf("| %#x |\n", 0);
-		test_printf("| %#x |\n", long_min);
-		test_printf("| %#x %#x %#x %#x %#x %#x %#x|\n", int_max, int_min, long_max, long_min, ulong_max, 0, -42);
+		test_printf("| %#x |\n", LONG_MIN);
+		test_printf("| %#x %#x %#x %#x %#x %#x %#x|\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 		test_printf("|\\!/%- 18.2d\\!/|\n", 0);
 		test_printf("|>------------<%#16.41x>------------<|\n", -1661147392);
 		test_printf("|%.0u|\n", 0);
@@ -75,7 +74,7 @@ int main()
 		test_printf("|^.^/%-#54.50x^.^/|\n", 2035129755);
 		test_printf("|%1.c|\n", 'a');
 		test_printf("|%5.c|\n", 'a');
-		test_printf("|%-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d|\n", 0, 5, -1, -10, 100, -1862, int_min, int_max);
+		test_printf("|%-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d, %-+1.d|\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 		test_printf("|% #010x|\n", 1000);
 		test_printf("|% +010x|\n", 1000);
 		test_printf("|% +-010x|\n", 1000);
@@ -116,16 +115,15 @@ int main()
 		test_printf("|%-70.193x%-140c%168c%026.51%%0125.119x" ,1102840003u,-50,-17,3721437512u);
 		test_printf("|%10c%0036.99%" ,9);
 		test_printf("|%-89c%20p%-33.16x%--25.85u" ,10,(void*)1144206967121894099lu,1538791465u,84, 543381790u);
-		test_printf("|%p|\n", null);
-		test_printf("|%.p|\n", null);
-		test_printf("|%.p|\n", null);
-		test_printf("|%1.p|\n", null);
-		test_printf("|%1.p|\n", null);
-		test_printf("|%5.p|\n", null);
-		test_printf("|%5.p|\n", null);
-		test_printf("|%5.x|\n", null);
+		test_printf("|%p|\n", NULL);
+		test_printf("|%.p|\n", NULL);
+		test_printf("|%.p|\n", NULL);
+		test_printf("|%1.p|\n", NULL);
+		test_printf("|%1.p|\n", NULL);
+		test_printf("|%5.p|\n", NULL);
+		test_printf("|%5.p|\n", NULL);
+		test_printf("|%5.x|\n", NULL);
 		test_printf("|%5.u|\n", NULL);
 		test_printf("|-->|%-16.p|<-- |\n", NULL);
 		test_printf("|-->|%-16.p|<-- |\n", NULL);
-
 }
