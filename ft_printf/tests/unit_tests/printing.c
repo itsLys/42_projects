@@ -18,8 +18,8 @@ void test_printf(const char  *fmt, ...)
 	printf("ft_printf:	");
 	fflush(stdout);
     ftpf = ft_printf(fmt, ftargs);
-    // printf("pf:		%d\n", pf);
-    // printf("ftpf:		%d\n", ftpf);
+    printf("pf:		%d\n", pf);
+    printf("ftpf:		%d\n", ftpf);
 
     assert(pf == ftpf);
     va_end(args);

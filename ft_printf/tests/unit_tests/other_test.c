@@ -3,6 +3,7 @@
 
 int main(void)
 {
+
 	 char char1 = 'A';
     char *str = "Hello, world!";
     char *null_str = NULL;
@@ -195,4 +196,10 @@ int main(void)
 	test_printf("|%.10s|\n", "Short");        // Short string with larger precision
 	test_printf("|%010d|\n", 123);            // Zero-padded with width
 	test_printf("|%-10s|\n", "Left");         //
+	// test_printf(NULL, "s");         //
+	// test_printf("|Hello\0World|\n"); 
+	// test_printf("%d\0%d\n", num, num);
+	test_printf("%d, %s, %\0\n", num, "Hello", 42);
+	test_printf("%\0\n", num);
+
 }
