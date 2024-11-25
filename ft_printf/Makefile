@@ -20,7 +20,6 @@ RM			= rm -rf
 
 
 all: $(NAME)
-	cp -p $(NAME) tests/unit_tests/$(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(GREEN)ft_printf done!$(RESET)"
