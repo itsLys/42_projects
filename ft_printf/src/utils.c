@@ -1,6 +1,19 @@
 #include "ft_printf.h"
-#include <assert.h>
-#include <stdio.h>
+
+int print_width(t_flags *f, int n)
+{
+	int count = 0;
+	while (f->width - n > 0)
+	{
+		if (f->zero_padded)
+			ft_putchar_fd('0', 1);
+		else
+			ft_putchar_fd(' ', 1);
+		f->width--;
+		count++;
+	}
+	return count;
+}
 
 int get_num_len(unsigned long long n, unsigned base)
 {
@@ -25,7 +38,7 @@ int check_valid(const char *fmt)
 		fmt++;
 	while (*fmt && ft_isdigit(*fmt))
 		fmt++;
-	if (*fmt && ft_strchr(CONVERSIONS, *fmt))
+	if (ft_strchr(CONVERSIONS, *fmt))
 		return 1;
 	return 0;
 }

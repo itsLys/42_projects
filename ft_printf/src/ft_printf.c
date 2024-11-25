@@ -59,12 +59,13 @@ void print_conversion(char c, va_list args, t_flags *f)
 		f->printed += handle_hex(va_arg(args, unsigned int), f, c);
 	else if (c == '%')
 		f->printed += ft_putchar_fd('%', 1);
-	else
-		return;
+	else if (c == '\0')
+		f->printed = -1;
 }
 
 void parse_fmt(const char *fmt, va_list args, t_flags *f)
 {
+	ft_memset(f, 0, sizeof(*f));
 	while (*fmt && ft_strchr(FLAGS, *fmt))
 	{
 		parse_flags(fmt++, f);
@@ -84,32 +85,30 @@ void parse_fmt(const char *fmt, va_list args, t_flags *f)
 	print_conversion(*fmt, args, f);
 }
 
-int	ft_printf(const char *fmt, va_list args) //change to elipsis later
+int	ft_printf(const char *fmt, ...) //change to elipsis later
 {
 	int count;
 	t_flags f;
 
+	va_list args;
+	va_start(args, fmt);
+	if (!fmt)
+		return -1;
 	count = 0;
-	while (*fmt)
-	{
+	while (fmt && *fmt)
 		if (*fmt != '%')
 			count += ft_putchar_fd(*(fmt++), 1);
 		else
-		{
 			if (check_valid(++fmt))
 			{
-				ft_memset(&f, 0, sizeof(f));
 				parse_fmt(fmt, args, &f);
 				fmt += f.total;
+				if (f.printed == -1)
+					return -1;
 				count += f.printed;
 			}
 			else
 				count += ft_putchar_fd('%', 1);
-		}
-	}
 	va_end(args);
 	return count;
 }
-// TODO: Unit tests
-// handle error from write,
-// handle \0 after a %

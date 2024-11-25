@@ -5,7 +5,7 @@ CC 			= cc -c -Wall -Wextra -Werror
 AR			= ar rcs
 INCLUDES	= -I./headers -I./libft/headers
 
-SRC			= ft_printf.c print_char.c print_hex.c print_nbr.c print_ptr.c print_str.c print_unsigned.c print_width.c utils.c
+SRC			= ft_printf.c print_char.c print_hex.c print_nbr.c print_ptr.c print_str.c print_unsigned.c utils.c
 OBJDIR		= obj
 SRCDIR		= src
 OBJ 		= $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -21,6 +21,7 @@ RM			= rm -rf
 
 all: $(NAME)
 	cp -p $(NAME) tests/unit_tests/$(NAME)
+
 $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(GREEN)ft_printf done!$(RESET)"
 
@@ -40,13 +41,13 @@ $(LIBFT):
 
 clean :
 	@echo "$(RED)Cleaning $(OBJDIR)...$(RESET)"
-	@${RM} $(OBJDIR) # {}??
+	@$(RM) $(OBJDIR)
 
 fclean : clean
 	@make -C $(LIBFTDIR) fclean
 	@echo "$(RED)Cleaning $(NAME)...$(RESET)"
-	@${RM} $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re, build
+.PHONY: all, clean, fclean, re

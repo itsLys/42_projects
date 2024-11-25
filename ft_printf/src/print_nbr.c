@@ -1,6 +1,5 @@
 #include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
+#define BASE 10
 
 int handle_nbr_flags(t_flags *f, long num, int len, int sign)
 {
@@ -13,8 +12,8 @@ int handle_nbr_flags(t_flags *f, long num, int len, int sign)
 	buff = malloc(len);
 	while (len--)
 	{
-		buff[i++] = "0123456789"[num % 10]; // BASE VAR
-		num /= 10;
+		buff[i++] = "0123456789"[num % BASE]; // BASE VAR
+		num /= BASE;
 	}
 	if (sign < 0)
 		buff[i - 1] = '-';
@@ -69,7 +68,7 @@ int	handle_nbr(int n, t_flags *f)
 		num = -num;
 		sign = -sign;
 	}
-	numlen = get_num_len(num, 10);
+	numlen = get_num_len(num, BASE);
 	count = print_nbr(num, f, numlen, sign);
 	return (count);
 }

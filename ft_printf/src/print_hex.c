@@ -1,7 +1,5 @@
 #include "ft_printf.h"
-#include <stdio.h>
 #define BASE 16
-#include <stdlib.h>
 
 int print_hex_digits(unsigned int x, t_flags *f, int len, char* hexset)
 {

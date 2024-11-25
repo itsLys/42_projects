@@ -14,10 +14,12 @@ void test_printf(const char  *fmt, ...)
     printf("case:    	%d\n", get_case());
     printf("printf:		");
 	pf = vprintf(fmt, args);
+    printf("\n");
 	fflush(stdout);
 	printf("ft_printf:	");
 	fflush(stdout);
     ftpf = ft_printf(fmt, ftargs);
+	printf("\n");
     printf("pf:		%d\n", pf);
     printf("ftpf:		%d\n", ftpf);
 

@@ -1,6 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
 #define BASE 10
 
 int print_unsigned_digits(unsigned num, t_flags *f, int len)
@@ -46,7 +44,7 @@ int handle_unsigned(unsigned int u, t_flags *f)
 {
 	int count;
 	int numlen;
-	numlen = get_num_len(u, 10);
+	numlen = get_num_len(u, BASE);
 	count = print_unsigned(u, f, numlen);
 	return (count);
 }

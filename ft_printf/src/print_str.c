@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
 
 int printnstr(t_flags *f, char *str, int len)
 {
@@ -49,7 +48,6 @@ int	handle_null_str(t_flags *f)
 int handle_str(char *str, t_flags *f)
 {
 	int count;
-	// int slen;
 
 	count = 0;
 	if (!str)

@@ -1,47 +1,58 @@
 #include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
 #define BASE 16
 
-int print_addr_digits(unsigned long long addr, t_flags *f, int n)
+int print_addr_digits(unsigned long long addr, t_flags *f, int len)
 {
 	char *buff;
 	int count;
 	int i;
 
 	count = 0;
-	i = 0;
-	if (f->precision_value > n)
-		n = f->precision_value;
-	buff = malloc(n);
-	while (n--)
+	i = len;
+	if (f->precision_value > len)
+		len = f->precision_value;
+	buff = malloc(len);
+	while (i--)
 	{
-		buff[i++] = "0123456789abcdef"[addr % BASE];
+		buff[i] = "0123456789abcdef"[addr % BASE];
 		addr /= BASE;
 	}
-	buff[i++] = 'x';
-	buff[i++] = '0';
 	if (f->force_sign)
-		buff[i++] = '+';
-	while (i-- > 0)
-		count += ft_putchar_fd(buff[i], 1);
+		buff[++i] = '+';
+	else if (f->space_flag)
+		buff[++i] = ' ';
+	buff[++i] = '0';
+	buff[++i] = 'x';
+	i = 0;
+	while (i < len)
+		count += ft_putchar_fd(buff[i++], 1);
 	free(buff);
 	return (count);
 }
-// TODO: Fix here, width, space and 0 padding not correct
 
-int print_addr(unsigned long long addr, t_flags *f, int n)
+int print_addr(unsigned long long addr, t_flags *f, int len)
 {
 	int count;
 
 	count = 0;
-	if (f->precision_value > n)
-		n = f->precision_value;
+	if (f->precision_value > len)
+		len = f->precision_value;
+	len += 2;
+	if (f->space_flag || f->force_sign)
+		len++;
 	if (!f->left_adjusted)
-		count += print_width(f, n + 2);
-	count += print_addr_digits(addr, f, n);
+	{
+		if (!f->precision_flag && f->zero_padded && f->width > len)
+			len = f->width;
+		else
+		{
+			f->zero_padded = 0;
+			count = print_width(f, len);
+		}
+	}
+	count += print_addr_digits(addr, f, len);
 	if (f->left_adjusted)
-		count += print_width(f, n + 2);
+		count += print_width(f, len);
 	return (count);
 }
 
@@ -68,12 +79,10 @@ int handle_ptr(unsigned long long addr, t_flags *f)
 	int count;
 	int numlen;
 
-	numlen = get_num_len(addr, 16);
+	numlen = get_num_len(addr, BASE);
 	if (!addr)
 		count = handle_null_ptr(f);
 	else
 		count = print_addr(addr, f, numlen);
 	return (count);
 }
-
-// TODO: Only printing is remaining, keep going
