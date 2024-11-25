@@ -1,0 +1,12 @@
+ -lncursesw
+-pthread 
+Wall 
+-pedantic 
+-g 
+-ggdb 
+-Wextra 
+-std=c11 
+-O3
+-I./headers/
+-I./libft/headers
+-lm
