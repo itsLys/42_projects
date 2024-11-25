@@ -1,3 +1,6 @@
+#ifndef LIBPRINTF_H
+#define LIBPRINTF_H
+
 #include "libft.h"
 #include <stdarg.h>
 #define FLAGS "#0-+ "
@@ -26,4 +29,5 @@ int handle_hex(unsigned int x, t_flags *f, char c);
 int handle_unsigned(unsigned int u, t_flags *f); 
 int check_valid(const char *fmt);
 int print_width(t_flags *f, int n);
-int get_num_len(unsigned long long n, unsigned base);
+int get_num_len(unsigned long long n, unsigned int base);
+#endif // !LIBPRINTF_H

@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 14:42:31 by ihajji            #+#    #+#             */
+/*   Updated: 2024/11/25 14:43:46 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void parse_flags(const char *fmt, t_flags *f)
+static void	parse_flags(const char *fmt, t_flags *f)
 {
 	if (*fmt == '#')
 		f->alt_form = 1;
 	else if (*fmt == '0')
 	{
-	if (!f->left_adjusted)
-		f->zero_padded = 1;
+		if (!f->left_adjusted)
+			f->zero_padded = 1;
 	}
 	else if (*fmt == '-')
 	{
@@ -23,10 +35,11 @@ void parse_flags(const char *fmt, t_flags *f)
 	}
 }
 
-int parse_integer(const char *fmt, int *n, t_flags *f)
+static int	parse_integer(const char *fmt, int *n, t_flags *f)
 {
-	int count = 0;
+	int	count;
 
+	count = 0;
 	*n = ft_atoi(fmt);
 	while (*fmt && ft_isdigit(*fmt))
 	{
@@ -34,10 +47,10 @@ int parse_integer(const char *fmt, int *n, t_flags *f)
 		fmt++;
 		f->total++;
 	}
-	return count;
+	return (count);
 }
 
-void print_conversion(char c, va_list args, t_flags *f)
+static void	print_conversion(char c, va_list args, t_flags *f)
 {
 	if (c == 'c')
 	{
@@ -63,7 +76,7 @@ void print_conversion(char c, va_list args, t_flags *f)
 		f->printed = -1;
 }
 
-void parse_fmt(const char *fmt, va_list args, t_flags *f)
+static void	parse_fmt(const char *fmt, va_list args, t_flags *f)
 {
 	ft_memset(f, 0, sizeof(*f));
 	while (*fmt && ft_strchr(FLAGS, *fmt))
@@ -87,28 +100,29 @@ void parse_fmt(const char *fmt, va_list args, t_flags *f)
 
 int	ft_printf(const char *fmt, ...) //change to elipsis later
 {
-	int count;
-	t_flags f;
+	va_list	args;
+	t_flags	f;
+	int		count;
 
-	va_list args;
 	va_start(args, fmt);
 	if (!fmt)
-		return -1;
+		return (-1);
 	count = 0;
 	while (fmt && *fmt)
+	{
 		if (*fmt != '%')
 			count += ft_putchar_fd(*(fmt++), 1);
+		else if (check_valid(++fmt))
+		{
+			parse_fmt(fmt, args, &f);
+			fmt += f.total;
+			if (f.printed == -1)
+				return (-1);
+			count += f.printed;
+		}
 		else
-			if (check_valid(++fmt))
-			{
-				parse_fmt(fmt, args, &f);
-				fmt += f.total;
-				if (f.printed == -1)
-					return -1;
-				count += f.printed;
-			}
-			else
-				count += ft_putchar_fd('%', 1);
+			count += ft_putchar_fd('%', 1);
+	}
 	va_end(args);
-	return count;
+	return (count);
 }

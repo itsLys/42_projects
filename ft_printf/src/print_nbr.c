@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_nbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
+/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #define BASE 10
 
-int handle_nbr_flags(t_flags *f, long num, int len, int sign)
+static int	handle_nbr_flags(t_flags *f, long num, int len, int sign)
 {
-	char *buff;
-	int i;
-	int count;
+	char	*buff;
+	int		i;
+	int		count;
 
 	count = 0;
 	i = 0;
 	buff = malloc(len);
 	while (len--)
 	{
-		buff[i++] = "0123456789"[num % BASE]; // BASE VAR
+		buff[i++] = "0123456789"[num % BASE];
 		num /= BASE;
 	}
 	if (sign < 0)
@@ -24,12 +36,12 @@ int handle_nbr_flags(t_flags *f, long num, int len, int sign)
 	while (i-- > 0)
 		count += ft_putchar_fd(buff[i], 1);
 	free(buff);
-	return count;
+	return (count);
 }
 
-int print_nbr(long num, t_flags *f, int len, int sign)
+static int	print_nbr(long num, t_flags *f, int len, int sign)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (f->precision_value > len)
@@ -42,7 +54,7 @@ int print_nbr(long num, t_flags *f, int len, int sign)
 	{
 		if (!f->precision_flag && f->zero_padded && f->width > len)
 			len = f->width;
-		else 
+		else
 		{
 			f->zero_padded = 0;
 			count = print_width(f, len);
@@ -51,15 +63,15 @@ int print_nbr(long num, t_flags *f, int len, int sign)
 	count += handle_nbr_flags(f, num, len, sign);
 	if (f->left_adjusted)
 		count += print_width(f, len);
-	return count;
+	return (count);
 }
 
 int	handle_nbr(int n, t_flags *f)
 {
-	int count;
-	int numlen;
-	long num;
-	int sign;
+	int		count;
+	int		numlen;
+	long	num;
+	int		sign;
 
 	sign = 1;
 	num = n;

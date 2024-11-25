@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
+/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int print_width(t_flags *f, int n)
+int	print_width(t_flags *f, int n)
 {
-	int count = 0;
+	int	count;
+
+	count = 0;
 	while (f->width - n > 0)
 	{
 		if (f->zero_padded)
@@ -12,12 +26,12 @@ int print_width(t_flags *f, int n)
 		f->width--;
 		count++;
 	}
-	return count;
+	return (count);
 }
 
-int get_num_len(unsigned long long n, unsigned base)
+int	get_num_len(unsigned long long n, unsigned int base)
 {
-	int len;
+	int	len;
 
 	len = 1;
 	while (n > base - 1)
@@ -25,21 +39,20 @@ int get_num_len(unsigned long long n, unsigned base)
 		n /= base;
 		len++;
 	}
-	return len;
+	return (len);
 }
 
-int check_valid(const char *fmt)
+int	check_valid(const char *fmt)
 {
-	while (*fmt && ft_strchr(FLAGS, *fmt)) // the check of null byte is probabely a red herring
+	while (*fmt && ft_strchr(FLAGS, *fmt))
 		fmt++;
-	while (*fmt && ft_isdigit(*fmt))
+	while (ft_isdigit(*fmt))
 		fmt++;
 	if (*fmt == '.')
 		fmt++;
-	while (*fmt && ft_isdigit(*fmt))
+	while (ft_isdigit(*fmt))
 		fmt++;
 	if (ft_strchr(CONVERSIONS, *fmt))
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
-

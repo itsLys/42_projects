@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
+/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #define BASE 16
 
-int print_addr_digits(unsigned long long addr, t_flags *f, int len)
+static int	print_addr_digits(unsigned long long addr, t_flags *f, int len)
 {
-	char *buff;
-	int count;
-	int i;
+	char	*buff;
+	int		count;
+	int		i;
 
 	count = 0;
 	i = len;
@@ -30,9 +42,9 @@ int print_addr_digits(unsigned long long addr, t_flags *f, int len)
 	return (count);
 }
 
-int print_addr(unsigned long long addr, t_flags *f, int len)
+static int	print_addr(unsigned long long addr, t_flags *f, int len)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (f->precision_value > len)
@@ -56,11 +68,11 @@ int print_addr(unsigned long long addr, t_flags *f, int len)
 	return (count);
 }
 
-int handle_null_ptr(t_flags *f)
+static int	handle_null_ptr(t_flags *f)
 {
-	int count;
-	int nil_len;
-	char *str;
+	int		count;
+	int		nil_len;
+	char	*str;
 
 	count = 0;
 	str = "(nil)";
@@ -71,13 +83,13 @@ int handle_null_ptr(t_flags *f)
 	count += nil_len;
 	if (f->left_adjusted)
 		count += print_width(f, nil_len);
-	return count;
+	return (count);
 }
 
-int handle_ptr(unsigned long long addr, t_flags *f)
+int	handle_ptr(unsigned long long addr, t_flags *f)
 {
-	int count;
-	int numlen;
+	int	count;
+	int	numlen;
 
 	numlen = get_num_len(addr, BASE);
 	if (!addr)

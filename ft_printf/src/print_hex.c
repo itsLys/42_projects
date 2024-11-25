@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
+/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #define BASE 16
 
-int print_hex_digits(unsigned int x, t_flags *f, int len, char* hexset)
+static int	print_hex_digits(unsigned int x, t_flags *f, int len, char *hexset)
 {
-	char *buff;
-	int count;
-	int i;
+	char	*buff;
+	int		count;
+	int		i;
 
 	count = 0;
 	i = 0;
@@ -19,18 +31,18 @@ int print_hex_digits(unsigned int x, t_flags *f, int len, char* hexset)
 	}
 	if (f->alt_form)
 	{
-		buff[i-2] = hexset[BASE];
-		buff[i-1] = '0';
+		buff[i - 2] = hexset[BASE];
+		buff[i - 1] = '0';
 	}
 	while (i-- > 0)
 		count += ft_putchar_fd(buff[i], 1);
 	free(buff);
-	return count;
+	return (count);
 }
 
-int print_hexadecimal(unsigned int x, t_flags *f, int len, char *hexset)
+static int	print_hexadecimal(unsigned int x, t_flags *f, int len, char *hexset)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (f->precision_value > len)
@@ -45,7 +57,7 @@ int print_hexadecimal(unsigned int x, t_flags *f, int len, char *hexset)
 	{
 		if (!f->precision_flag && f->zero_padded && f->width > len)
 			len = f->width;
-		else 
+		else
 		{
 			f->zero_padded = 0;
 			count = print_width(f, len);
@@ -54,20 +66,19 @@ int print_hexadecimal(unsigned int x, t_flags *f, int len, char *hexset)
 	count += print_hex_digits(x, f, len, hexset);
 	if (f->left_adjusted)
 		count += print_width(f, len);
-	return count;
+	return (count);
 }
 
 int	handle_hex(unsigned int x, t_flags *f, char c)
 {
-	int count;
-	int numlen;
-	char *hexset;
+	int		count;
+	int		numlen;
+	char	*hexset;
 
 	if (c == 'x')
 		hexset = "0123456789abcdefx";
 	else
 		hexset = "0123456789ABCDEFX";
-
 	numlen = get_num_len(x, 16);
 	count = print_hexadecimal(x, f, numlen, hexset);
 	return (count);

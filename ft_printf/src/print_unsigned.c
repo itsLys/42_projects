@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_unsigned.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
+/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #define BASE 10
 
-int print_unsigned_digits(unsigned num, t_flags *f, int len)
+static int	print_unsigned_digits(unsigned num, t_flags *f, int len)
 {
-	char *buff;
-	int count;
-	int i;
+	char	*buff;
+	int		count;
+	int		i;
 
 	count = 0;
 	i = 0;
@@ -23,7 +35,7 @@ int print_unsigned_digits(unsigned num, t_flags *f, int len)
 	return (count);
 }
 
-int print_unsigned(unsigned num, t_flags *f, int len)
+static int	print_unsigned(unsigned num, t_flags *f, int len)
 {
 	int	count;
 
@@ -40,10 +52,11 @@ int print_unsigned(unsigned num, t_flags *f, int len)
 	return (count);
 }
 
-int handle_unsigned(unsigned int u, t_flags *f)
+int	handle_unsigned(unsigned int u, t_flags *f)
 {
-	int count;
-	int numlen;
+	int	count;
+	int	numlen;
+
 	numlen = get_num_len(u, BASE);
 	count = print_unsigned(u, f, numlen);
 	return (count);
