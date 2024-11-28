@@ -46,11 +46,11 @@ int	check_valid(const char *fmt)
 {
 	while (*fmt && ft_strchr(FLAGS, *fmt))
 		fmt++;
-	while (ft_isdigit(*fmt))
+	while (*fmt && ft_isdigit(*fmt))
 		fmt++;
 	if (*fmt == '.')
 		fmt++;
-	while (ft_isdigit(*fmt))
+	while (*fmt && ft_isdigit(*fmt))
 		fmt++;
 	if (ft_strchr(CONVERSIONS, *fmt))
 		return (1);

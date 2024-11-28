@@ -20,7 +20,7 @@ typedef struct s_flags
 	int	printed;
 	int	total;
 }		t_flags;
-int	ft_printf(const char *fmt, ...); //change to elipsis later
+int		ft_printf(const char *fmt, va_list args); //change to elipsis later
 int		handle_char(t_flags *f, int c);
 int		handle_str(char *str, t_flags *f);
 int		handle_ptr(unsigned long long addr, t_flags *f);
