@@ -44,7 +44,7 @@ int	ft_putnbr_fd(int n, int fd)
 {
 	char	str[12];
 	size_t	bytes;
-	int count;
+	int		count;
 
 	bytes = write_num(str, n);
 	count = 0;
