@@ -98,14 +98,13 @@ static void	parse_fmt(const char *fmt, va_list args, t_flags *f)
 	print_conversion(*fmt, args, f);
 }
 
-int	ft_printf(const char *fmt, va_list args) //change to elipsis later
-// test with elipsis is not working
+int	ft_printf(const char *fmt, ...)
 {
-	// va_list	args;
+	va_list	args;
 	t_flags	f;
 	int		count;
 
-	// va_start(args, fmt);
+	va_start(args, fmt);
 	if (!fmt || write(1, 0, 0) == -1)
 		return (-1);
 	count = 0;
@@ -124,6 +123,6 @@ int	ft_printf(const char *fmt, va_list args) //change to elipsis later
 		else
 			count += ft_putchar_fd('%', 1);
 	}
-	// va_end(args);
+	va_end(args);
 	return (count);
 }
