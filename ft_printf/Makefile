@@ -12,9 +12,7 @@ OBJ 		= $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 GREEN  		= \033[0;32m
 YELLOW 		= \033[0;33m
-BLUE   		= \033[0;34m
 MAGENTA		= \033[0;35m
-BOLD   		= \033[1m
 RESET  		= \033[0m
 RM			= rm -rf
 
@@ -28,15 +26,15 @@ $(NAME): $(LIBFT) $(OBJ)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
-	@echo "$(CYAN)Compiling $(notdir $<)...$(RESET)"
+	@echo "$(MAGENTA)Compiling $(notdir $<)...$(RESET)"
 	@$(CC) $< $(INCLUDES) -o $@
 	@echo "$(YELLOW)Inserting $(notdir $@) to $(NAME)...$(RESET)"
 	@$(AR) $(NAME) $@
 
 $(LIBFT):
-	@echo "$(CYAN)Compiling $(notdir $<)...$(RESET)"
+	@echo "$(MAGENTA)Compiling $(notdir $<)...$(RESET)"
 	@make -C $(LIBFTDIR) all
-	@echo "$(CYAN)Copying $(notdir $<)to $(NAME)...$(RESET)"
+	@echo "$(MAGENTA)Copying $(notdir $<)to $(NAME)...$(RESET)"
 	@cp $(LIBFT) $(NAME)  
 	@echo "$(GREEN)Copying done!$(RESET)"
 

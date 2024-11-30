@@ -42,6 +42,8 @@ static int	print_unsigned(unsigned num, t_flags *f, int len)
 	count = 0;
 	if (f->precision_value > len)
 		len = f->precision_value;
+	if (f->precision_flag)
+		f->zero_padded = 0;
 	if (f->precision_flag && !f->precision_value && !num)
 		len = 0;
 	if (!f->left_adjusted)

@@ -4,14 +4,14 @@
 int main(void)
 {
 
-	 char char1 = 'A';
-    char *str = "Hello, world!";
-    char *null_str = NULL;
-    void *ptr = (void *)0x12345678;
-    int num = 42;
-    unsigned int u_num = 123456789;
-    unsigned int zero = 0;
-    unsigned int max_uint = 0xFFFFFFFF;
+	char char1 = 'A';
+	char *str = "Hello, world!";
+	char *null_str = NULL;
+	void *ptr = (void *)0x12345678;
+	int num = 42;
+	unsigned int u_num = 123456789;
+	unsigned int zero = 0;
+	unsigned int max_uint = 0xFFFFFFFF;
 	test_printf("|42% 12.8d42|\n", 0);
 	test_printf("|^.^/%+44.16d^.^/|\n", 0);
 	test_printf("|!%+29.57d!|\n", 839186175);
@@ -197,7 +197,7 @@ int main(void)
 	test_printf("|%010d|\n", 123);            // Zero-padded with width
 	test_printf("|%-10s|\n", "Left");         //
 	// test_printf(NULL, "s");         //
-	// test_printf("|Hello\0World|\n"); 
+	// test_printf("|Hello\0World|\n");
 	// test_printf("%d\0%d\n", num, num);
 	test_printf("%d, %s, %\0\n", num, "Hello", 42);
 	test_printf("%\0\n", num);
@@ -209,7 +209,18 @@ int main(void)
 	test_printf("|%% %% % %%|\n", 0xaabbccdd);
 	test_printf("%% %% % %%", 0xaabbccdd);
 	test_printf("%% % %% %", 0xaabbccdd);
-
+	test_printf("|%%| Hello World |%s| \n", "Hello %d %s %#-0d");
+	test_printf("%08.5u", 34);
+	test_printf("%08.5u", 0);
+	test_printf("%08.3u", 8375);
+	test_printf("%020.5u", 1024u);
+	test_printf("%020.5u", -1024u);
+	test_printf("%0163.109u%-140.69d%---91.148s%000132.141i%-52.170x" ,2109506632u,-1086209677,"\nmD^8<.q*'\rD",-1143516304,2879456117u);
+	test_printf("%-52c%---163c%0%%050.35u" ,-60,-30,3953001178u);
+	test_printf("%121.64s%-3p%13.163s%-121.90u%00120.46u" ,"'^rPh{8S9)<x)F~vD@$)\nkT}bA-\\",(void*)2235944964447641287lu,"g$5|Xl'wi?..wz#\\s&$HNI[,stq~E",2648867901u,3988920245u);
+	test_printf("%0168.128u%0054.92x%30.171s" ,2620195206u,1771128939u,NULL);
+	test_printf("%---26.93u%0048.24u%168p%---%%--%" ,1674006569u,2231710712u,(void*)8652210935049373690lu);
+	test_printf("%0162.19u%-163p" ,2075536297u,(void*)16464387670933811057lu);
 
 
 }
