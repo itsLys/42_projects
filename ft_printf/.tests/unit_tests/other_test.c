@@ -201,5 +201,15 @@ int main(void)
 	// test_printf("%d\0%d\n", num, num);
 	test_printf("%d, %s, %\0\n", num, "Hello", 42);
 	test_printf("%\0\n", num);
+	test_printf("|%%|\n");
+	test_printf("|%%|Hello World\n");
+	test_printf("|%%| Hello World |%d| \n", 10);
+	test_printf("|%%| Hello World |%s| \n", "Hello %d %s %#-0d");
+	test_printf("|%%|\n", 0xaabbccdd);
+	test_printf("|%% %% % %%|\n", 0xaabbccdd);
+	test_printf("%% %% % %%", 0xaabbccdd);
+	test_printf("%% % %% %", 0xaabbccdd);
+
+
 
 }

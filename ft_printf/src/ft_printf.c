@@ -6,112 +6,22 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:42:31 by ihajji            #+#    #+#             */
-/*   Updated: 2024/11/25 14:43:46 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:36:26 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	parse_flags(const char *fmt, t_flags *f)
+static int	handle_fmt(const char *fmt, va_list args)
 {
-	if (*fmt == '#')
-		f->alt_form = 1;
-	else if (*fmt == '0')
-	{
-		if (!f->left_adjusted)
-			f->zero_padded = 1;
-	}
-	else if (*fmt == '-')
-	{
-		f->left_adjusted = 1;
-		f->zero_padded = 0;
-	}
-	else if (*fmt == ' ')
-		f->space_flag = 1;
-	else if (*fmt == '+')
-	{
-		f->space_flag = 0;
-		f->force_sign = 1;
-	}
-}
-
-static int	parse_integer(const char *fmt, int *n, t_flags *f)
-{
-	int	count;
-
-	count = 0;
-	*n = ft_atoi(fmt);
-	while (*fmt && ft_isdigit(*fmt))
-	{
-		count++;
-		fmt++;
-		f->total++;
-	}
-	return (count);
-}
-
-static void	print_conversion(char c, va_list args, t_flags *f)
-{
-	if (c == 'c')
-	{
-		f->zero_padded = 0;
-		f->printed += handle_char(f, va_arg(args, int));
-	}
-	else if (c == 's')
-	{
-		f->zero_padded = 0;
-		f->printed += handle_str(va_arg(args, char *), f);
-	}
-	else if (c == 'p')
-		f->printed += handle_ptr(va_arg(args, unsigned long long), f);
-	else if (c == 'd' || c == 'i')
-		f->printed += handle_nbr(va_arg(args, int), f);
-	else if (c == 'u')
-		f->printed += handle_unsigned(va_arg(args, unsigned int), f);
-	else if (c == 'x' || c == 'X')
-		f->printed += handle_hex(va_arg(args, unsigned int), f, c);
-	else if (c == '%')
-		f->printed += ft_putchar_fd('%', 1);
-	else if (c == '\0')
-		f->printed = -1;
-}
-
-static void	parse_fmt(const char *fmt, va_list args, t_flags *f)
-{
-	ft_memset(f, 0, sizeof(*f));
-	while (*fmt && ft_strchr(FLAGS, *fmt))
-	{
-		parse_flags(fmt++, f);
-		f->total++;
-	}
-	if (ft_isdigit(*fmt))
-		fmt += parse_integer(fmt, &(f->width), f);
-	if (*fmt == '.')
-	{
-		fmt++;
-		f->total++;
-		f->precision_flag = 1;
-		fmt += parse_integer(fmt, &(f->precision_value), f);
-	}
-	f->coversion = *fmt;
-	f->total++;
-	print_conversion(*fmt, args, f);
-}
-
-int	ft_printf(const char *fmt, ...)
-{
-	va_list	args;
 	t_flags	f;
 	int		count;
 
-	va_start(args, fmt);
-	if (!fmt || write(1, 0, 0) == -1)
-		return (-1);
 	count = 0;
-	while (fmt && *fmt)
+	while (*fmt)
 	{
 		if (*fmt != '%')
-			count += ft_putchar_fd(*(fmt++), 1);
+			count += print(*(fmt++));
 		else if (check_valid(++fmt))
 		{
 			parse_fmt(fmt, args, &f);
@@ -121,8 +31,22 @@ int	ft_printf(const char *fmt, ...)
 			count += f.printed;
 		}
 		else
-			count += ft_putchar_fd('%', 1);
+			count += print('%');
 	}
+	if (catch_err(0) == -1)
+		return (-1);
+	return (count);
+}
+
+int	ft_printf(const char *fmt, ...)
+{
+	int		count;
+	va_list	args;
+
+	va_start(args, fmt);
+	if (!fmt)
+		return (-1);
+	count = handle_fmt(fmt, args);
 	va_end(args);
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
-/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:36:50 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	print_width(t_flags *f, int n)
 	while (f->width - n > 0)
 	{
 		if (f->zero_padded)
-			ft_putchar_fd('0', 1);
+			print('0');
 		else
-			ft_putchar_fd(' ', 1);
+			print(' ');
 		f->width--;
 		count++;
 	}
@@ -55,4 +55,20 @@ int	check_valid(const char *fmt)
 	if (ft_strchr(CONVERSIONS, *fmt))
 		return (1);
 	return (0);
+}
+
+int	catch_err(int n)
+{
+	static int	e;
+
+	if (n == -1 && e == 0)
+		e = -1;
+	return (e);
+}
+
+int	print(char c)
+{
+	if (catch_err(ft_putchar_fd(c, 1)) == -1)
+		return (-1);
+	return (1);
 }

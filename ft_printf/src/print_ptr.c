@@ -6,7 +6,7 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
-/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:33:06 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	print_addr_digits(unsigned long long addr, t_flags *f, int len)
 	buff[++i] = 'x';
 	i = 0;
 	while (i < len)
-		count += ft_putchar_fd(buff[i++], 1);
+		count += print(buff[i++]);
 	free(buff);
 	return (count);
 }
@@ -67,6 +67,7 @@ static int	print_addr(unsigned long long addr, t_flags *f, int len)
 		count += print_width(f, len);
 	return (count);
 }
+// NOTE: precision flag overwrites padding
 
 static int	handle_null_ptr(t_flags *f)
 {
@@ -75,11 +76,13 @@ static int	handle_null_ptr(t_flags *f)
 	char	*str;
 
 	count = 0;
+	f->zero_padded = 0;
 	str = "(nil)";
 	nil_len = ft_strlen(str);
 	if (!f->left_adjusted)
 		count += print_width(f, nil_len);
-	ft_putstr_fd(str, 1);
+	while (*str)
+		print(*(str++));
 	count += nil_len;
 	if (f->left_adjusted)
 		count += print_width(f, nil_len);

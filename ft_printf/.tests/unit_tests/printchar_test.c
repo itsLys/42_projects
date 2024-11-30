@@ -102,8 +102,8 @@ int main(void)
 	test_printf("|%-0#-.5c|\n", 'H');     // Confusing combination of flags and precision (undefined)
 	printf(":::::CHECK VALID\n");
 	test_printf("|%0-0-.c|\n", 'I');      // Mixed order: '0', '-', width, precision (undefined)
-	test_printf("|%0-5-.c|\n", 'I');      // Mixed order: '0', '-', width, precision (undefined)
 	test_printf("|%-#05.3c|\n", 'J');     // Undefined with all invalid flags combined
+	test_printf("|%0-5-.c|\n", 'I');      // Mixed order: '0', '-', width, precision (undefined)
 
 
 

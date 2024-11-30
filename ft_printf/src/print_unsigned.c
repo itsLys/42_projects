@@ -6,7 +6,7 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
-/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:33:33 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	print_unsigned_digits(unsigned num, t_flags *f, int len)
 		num /= BASE;
 	}
 	while (i-- > 0)
-		count += ft_putchar_fd(buff[i], 1);
+		count += print(buff[i]);
 	free(buff);
 	return (count);
 }

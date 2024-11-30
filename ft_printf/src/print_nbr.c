@@ -6,7 +6,7 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
-/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:34:01 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	handle_nbr_flags(t_flags *f, long num, int len, int sign)
 	else if (f->space_flag && sign > 0)
 		buff[i - 1] = ' ';
 	while (i-- > 0)
-		count += ft_putchar_fd(buff[i], 1);
+		count += print(buff[i]);
 	free(buff);
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:21:09 by ihajji            #+#    #+#             */
-/*   Updated: 2024/11/25 14:21:09 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:45:56 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	printnstr(t_flags *f, char *str, int len)
 	if (!f->left_adjusted)
 		count += print_width(f, len);
 	while (n-- && *str)
-		count += ft_putchar_fd(*(str++), 1);
+		count += print(*(str++));
 	if (f->left_adjusted)
 		count += print_width(f, len);
 	return (count);
@@ -45,13 +45,11 @@ static int	handle_null_str(t_flags *f)
 {
 	int		count;
 	char	*str;
-	int		slen;
 
 	count = 0;
 	str = "(null)";
-	slen = ft_strlen(str);
 	if (f->precision_flag && f->precision_value >= 0
-		&& f->precision_value < slen)
+		&& f->precision_value < (int) ft_strlen(str))
 		count += print_width(f, 0);
 	else
 		count += handle_str_precision(f, str);

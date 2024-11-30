@@ -56,6 +56,6 @@ int main()
 	test_printf("|%p|\n", 15);
 	test_printf("|%p %p|\n", LONG_MIN, LONG_MAX);
 	test_printf("|%p %p|\n", INT_MIN, INT_MAX);
-	test_printf("|%p %p|\n", ULONG_MAX, -ULONG_MAX);
+	test_printf("|%p %030p|\n", NULL, NULL);
 
 }
