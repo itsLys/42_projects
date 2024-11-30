@@ -6,7 +6,7 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 11:32:09 by ihajji            #+#    #+#             */
-/*   Updated: 2024/11/09 11:32:09 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:52:30 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ int	ft_putchar_fd(char c, int fd)
 {
 	if (fd > 0)
 		return (write(fd, &c, 1));
-	return (0);
+	return (-1);
 }

@@ -10,7 +10,7 @@ SRC_BONUS 	= ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
 			  ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c \
 			  ft_lstlast_bonus.c ft_lstmap_bonus.c ft_lstnew_bonus.c \
 			  ft_lstsize_bonus.c
-INCLUDES	= headers
+INCLUDES	= -I./headers
 OBJDIR		= obj
 SRCDIR		= src
 NAME		= libft.a
@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
 	@echo "$(CYAN)Compiling $(notdir $<)...$(RESET)"
-	@$(CC) $< -I$(INCLUDES) -o $@
+	@$(CC) $< $(INCLUDES) -o $@
 	@echo "$(YELLOW)Inserting $(notdir $@) to $(NAME)...$(RESET)"
 	@$(AR) $(NAME) $@
 
