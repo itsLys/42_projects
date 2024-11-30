@@ -41,12 +41,12 @@ static int	handle_fmt(const char *fmt, va_list args)
 int	ft_printf(const char *fmt, ...)
 {
 	int		count;
-	// va_list	args;
+	va_list	args;
 
-	// va_start(args, fmt);
+	va_start(args, fmt);
 	if (!fmt)
 		return (-1);
 	count = handle_fmt(fmt, args);
-	// va_end(args);
+	va_end(args);
 	return (count);
 }
