@@ -5,7 +5,7 @@ CC 			= cc -c -Wall -Wextra -Werror
 AR			= ar rcs
 INCLUDES	= -I./headers -I./libft/headers
 
-SRC			= ft_printf.c print_char.c print_hex.c print_nbr.c print_ptr.c print_str.c print_unsigned.c utils.c parsing.c
+SRC			= ft_printf_bonus.c print_char.c print_hex.c print_nbr.c print_ptr.c print_str.c print_unsigned.c utils.c parsing.c
 OBJDIR		= obj
 SRCDIR		= src
 OBJ 		= $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -20,6 +20,8 @@ RM			= rm -rf
 
 
 all: $(NAME)
+
+bonus: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(GREEN)ft_printf done!$(RESET)"
