@@ -13,15 +13,16 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# define MAX_READ 0x7ffff000
+# define MAX_FD 1024
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+# elif BUFFER_SIZE == MAXREAD
 # endif // !BUFFER_SIZE
 
 # include <stdlib.h>
 # include <unistd.h>
-# define MAX_READ 0x7ffff000
-# define MAX_FD 1024
 
-ssize_t	ft_strchr(const char *str, int c);
+ssize_t	find_char(const char *str, int c);
 
 #endif // !GET_NEXT_LINE_H
