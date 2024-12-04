@@ -1,8 +1,5 @@
 #include "get_next_line.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <unistd.h>
 
 char	*read_line(int fd, char **last)
 {
@@ -32,17 +29,25 @@ char	*read_line(int fd, char **last)
 	return (line);
 }
 
+char *extract_line(char *last)
+{
+	char *line;
+
+	while (*last != '\n')
+		last++;
+	line = ft_strjoin(line, ++last);
+
+	return line;
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*last;
-	char *line;
+	char		*line;
 
-	if (ft_strchr(last, '\n'))
-	{
-
-	}
-	line = read_line(fd, &last);
-	printf("last start ->> %s <<- last end|\n", last);
-	return();
+	printf("last->>	%s", last);
+	if (ft_strchr(last, NL))
+		return(extract_line(last));
+	return(read_line(fd, &last));
 }
 // before reading a line, check the last read buffer if it has lines that should be returned
