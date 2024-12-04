@@ -16,7 +16,7 @@
 # define MAX_READ 0x7ffff000
 # define MAX_FD 1024
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 10
 # endif // !BUFFER_SIZE
 
 # if BUFFER_SIZE > MAX_READ

@@ -1,4 +1,5 @@
 #include "get_next_line.h"
+#include <stdio.h>
 #include <unistd.h>
 
 size_t	count_len(const char *s)
