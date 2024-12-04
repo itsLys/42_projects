@@ -1,5 +1,7 @@
 #include "get_next_line.h"
-size_t	count_total_len(const char *s)
+#include <unistd.h>
+
+size_t	count_len(const char *s)
 {
 	size_t	i;
 
@@ -13,17 +15,13 @@ size_t	count_total_len(const char *s)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	prelen;
-	size_t	suflen;
 	size_t	total_size;
 	char	*str;
 
 	if (!s1)
 		return (ft_strdup(s2));
-	prelen = count_total_len(s1);
-	suflen = count_total_len(s2);
-	total_size = prelen + suflen + 1;
-	str = malloc(total_size + 1);
+	total_size = count_len(s1) + count_len(s2) + 1;
+	str = malloc(total_size);
 	if (str == NULL)
 		return (NULL);
 	str[0] = '\0';
@@ -35,15 +33,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 char	*ft_strdup(const char *s)
 {
 	char	*dup;
-	size_t	ssize;
+	size_t	slen;
 	int		i;
 
-	ssize = count_total_len(s) + 1;
-	dup = malloc(sizeof(char) * ssize);
+	slen = count_len(s);
+	dup = malloc(slen + 1);
 	if (dup == NULL)
 		return (NULL);
 	i = 0;
-	while (*s)
+	while (*s && slen--)
 		dup[i++] = *(s++);
 	return (dup);
 }
@@ -57,4 +55,16 @@ void	str_append(const char *src, char *dst)
 	if (*src)
 		*(dst++) = '\n';
 	*dst = '\0';
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	c = (char)c;
+	while (*s && *s != c)
+		s++;
+	if (*s == c)
+		return ((char *)(s));
+	return (NULL);
 }

@@ -24,10 +24,15 @@
 #  define BUFFER_SIZE MAX_READ
 # endif
 
+#define NL '\n'
+# include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <sys/types.h>
 # include <unistd.h>
 
-ssize_t	find_char(const char *str, int c);
+char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s);
 void	str_append(const char *src, char *dst);

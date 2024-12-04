@@ -9,4 +9,3 @@
 -std=c11 
 -O3
 -lm
--D BUFFER_SIZE=0x7ffff001
