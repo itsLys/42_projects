@@ -29,25 +29,31 @@ char	*read_line(int fd, char **last)
 	return (line);
 }
 
-char *extract_line(char *last)
-{
-	char *line;
-
-	while (*last != '\n')
-		last++;
-	line = ft_strjoin(line, ++last);
-
-	return line;
-}
+// char *extract_line(char *last)
+// {
+// 	char *line;
+//
+// 	while (*last != '\n')
+// 		last++;
+// 	line = ft_strjoin(line, ++last);
+//
+// 	return line;
+// }
 
 char	*get_next_line(int fd)
 {
 	static char	*last;
 	char		*line;
 
-	printf("last->>	%s", last);
-	if (ft_strchr(last, NL))
-		return(extract_line(last));
+	if (last)
+	{
+		while (*last && *last != '\n')
+			last++;
+		if (*last == NL)
+			last++;
+	}
+	printf("addr->>	%p\n", last);
+	printf("str->>	%s\n", last);
 	return(read_line(fd, &last));
 }
 // before reading a line, check the last read buffer if it has lines that should be returned
