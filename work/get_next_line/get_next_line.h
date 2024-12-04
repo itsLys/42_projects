@@ -17,12 +17,19 @@
 # define MAX_FD 1024
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
-# elif BUFFER_SIZE == MAXREAD
 # endif // !BUFFER_SIZE
+
+# if BUFFER_SIZE > MAX_READ
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE MAX_READ
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>
 
 ssize_t	find_char(const char *str, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *s);
+void	str_append(const char *src, char *dst);
 
 #endif // !GET_NEXT_LINE_H

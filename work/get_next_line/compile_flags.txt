@@ -1,13 +1,12 @@
  -lncursesw
 -pthread 
-Wall 
+-Wall 
+-Werror
 -pedantic 
 -g 
 -ggdb 
 -Wextra 
 -std=c11 
 -O3
--I./headers/
--I./libft/headers
 -lm
 -D BUFFER_SIZE=0x7ffff001
