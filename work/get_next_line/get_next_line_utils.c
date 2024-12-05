@@ -7,9 +7,7 @@ size_t	count_len(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	if (s[i])
+	while (s[i])
 		i++;
 	return (i);
 }
@@ -19,35 +17,35 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	total_size;
 	char	*str;
 
-	if (!s1)
-		return (ft_strdup(s2));
-	total_size = count_len(s1) + count_len(s2) + 1;
-	str = malloc(total_size);
-	if (str == NULL)
+	total_size = count_len(s1) + count_len(s2);
+	str = malloc(total_size + 1);
+	if (!str)
 		return (NULL);
+	// TODO: check after malloc returns NULL weather the last is freeed or not
 	str[0] = '\0';
-	str_append(s1, str);
-	str_append(s2, str);
+	line_append(s1, str);
+	line_append(s2, str);
 	return (str);
 }
 
 char	*ft_strdup(const char *s)
 {
 	char	*dup;
-	size_t	slen;
 	int		i;
 
-	slen = count_len(s);
-	dup = malloc(slen + 1);
+	;
+	dup = malloc(count_len(s) + 1);
 	if (dup == NULL)
 		return (NULL);
+	// TODO: check and free after
 	i = 0;
-	while (*s && slen--)
+	while (*s)
 		dup[i++] = *(s++);
+	dup[i] = '\0';
 	return (dup);
 }
 
-void	str_append(const char *src, char *dst)
+void	line_append(const char *src, char *dst)
 {
 	while (*dst)
 		dst++;
