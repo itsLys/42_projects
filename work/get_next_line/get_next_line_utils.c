@@ -33,7 +33,6 @@ char	*ft_strdup(const char *s)
 	char	*dup;
 	int		i;
 
-	;
 	dup = malloc(count_len(s) + 1);
 	if (dup == NULL)
 		return (NULL);
