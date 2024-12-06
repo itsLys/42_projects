@@ -21,7 +21,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str = malloc(total_size + 1);
 	if (!str)
 		return (NULL);
-	// TODO: check after malloc returns NULL weather the last is freeed or not
 	str[0] = '\0';
 	line_append(s1, str);
 	line_append(s2, str);
@@ -34,9 +33,8 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	dup = malloc(count_len(s) + 1);
-	if (dup == NULL)
+	if (!dup)
 		return (NULL);
-	// TODO: check and free after
 	i = 0;
 	while (*s)
 		dup[i++] = *(s++);
@@ -57,12 +55,12 @@ void	line_append(const char *src, char *dst)
 
 char	*ft_strchr(const char *s, int c)
 {
-	if (!s)
-		return (NULL);
-	c = (char)c;
-	while (*s && *s != c)
-		s++;
-	if (*s == c)
-		return ((char *)(s));
+	if (s)
+	{
+		while (*s && *s != c)
+			s++;
+		if (*s == c)
+			return ((char *)(s));
+	}
 	return (NULL);
 }

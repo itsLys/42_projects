@@ -11,39 +11,45 @@ void	read_next(char **last)
 	*last = tmp;
 }
 
+void *clean_up(void *buff)
+{
+	free(buff);
+	return (NULL);
+}
+
 char	*read_buffer(int fd, char **last)
 {
 	ssize_t bytes;
 	char	*line;
-	char	*buffer;
+	char	*buff;
 
-	buffer = malloc(BUFFER_SIZE + 1);
+	buff = malloc(BUFFER_SIZE + 1);
+	if (!buff)
+		return (clean_up(*last));
+	line = "";
 	if (*last)
-		line = ft_strdup(*last);
-	else
-		line = ft_strdup("");
-	while (ft_strchr(buffer, NL) == NULL)
+		line = *last;
+	while (!ft_strchr(buff, NL))
 	{
-		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes == -1)
-		{
-			free(line);
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes] = '\0';
-		line = ft_strjoin(line, buffer);
+		bytes = read(fd, buff, BUFFER_SIZE);
+		if (bytes <= 0)
+			return (clean_up(buff));
+		buff[bytes] = '\0';
+		line = ft_strjoin(line, buff);
+		if (!line)
+			return (clean_up(buff));
 	}
 	free(*last);
-	*last = buffer;
+	*last = buff;
 	return (line);
 }
-
 
 char	*get_next_line(int fd)
 {
 	static char	*last;
 
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE == INT_MAX)
+		return (NULL);
 	if (ft_strchr(last, NL))
 		read_next(&last);
 	return(read_buffer(fd, &last));

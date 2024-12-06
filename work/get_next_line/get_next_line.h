@@ -18,11 +18,9 @@
 #  define BUFFER_SIZE 14
 # endif // !BUFFER_SIZE
 
-#define NL '\n'
-# include <stdio.h>
+# define NL '\n'
+# include <limits.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <sys/types.h>
 # include <unistd.h>
 
 char	*get_next_line(int fd);
