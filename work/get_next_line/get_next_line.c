@@ -1,15 +1,8 @@
 #include "get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-void	read_next(char **last)
-{
-	char *tmp;
-
-	tmp = ft_strdup(ft_strchr(*last, NL) + 1);
-	free(*last);
-	*last = tmp;
-}
 
 void *clean_up(void *buff)
 {
@@ -21,26 +14,21 @@ char	*read_buffer(int fd, char **last)
 {
 	ssize_t bytes;
 	char	*line;
-	char	*buff;
+	char	*buffer;
+}
 
-	buff = malloc(BUFFER_SIZE + 1);
-	if (!buff)
-		return (clean_up(*last));
-	line = "";
-	if (*last)
-		line = *last;
-	while (!ft_strchr(buff, NL))
-	{
-		bytes = read(fd, buff, BUFFER_SIZE);
-		if (bytes <= 0)
-			return (clean_up(buff));
-		buff[bytes] = '\0';
-		line = ft_strjoin(line, buff);
-		if (!line)
-			return (clean_up(buff));
-	}
-	free(*last);
-	*last = buff;
+char	*join_reads(char const *s1, char const *s2)
+{
+	size_t	total_size;
+	char	*line;
+
+	total_size = count_len(s1) + count_len(s2);
+	line = malloc(total_size + 1);
+	if (!line)
+		return (NULL);
+	line[0] = '\0';
+	line_append(s1, line);
+	line_append(s2, line);
 	return (line);
 }
 
@@ -51,7 +39,9 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE == INT_MAX)
 		return (NULL);
 	if (ft_strchr(last, NL))
-		read_next(&last);
+	{
+		shift_left(&last);
+	}
 	return(read_buffer(fd, &last));
 }
 

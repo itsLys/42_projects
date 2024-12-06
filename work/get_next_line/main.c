@@ -16,6 +16,9 @@ int main(void)
 	printf("str->	%s", get_next_line(fd));
 	printf("str->	%s", get_next_line(fd));
 	printf("str->	%s", get_next_line(fd));
+	printf("str->	%s", get_next_line(fd));
+	printf("str->	%s", get_next_line(fd));
+	printf("str->	%s", get_next_line(fd));
 	// printf("str->	%s", get_next_line(fd));
 	// treshold
 	// printf("str->	%s", get_next_line(fd));
