@@ -12,7 +12,8 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+// implement dup until
+char	*strdup_until(const char *s)
 {
 	char	*dup;
 	int		i;
@@ -54,22 +55,3 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*substr;
-	size_t	slen;
-
-	if (!s)
-		return (ft_strdup(""));
-	slen = ft_strlen(s);
-	if (start >= slen)
-		return (ft_strdup(""));
-	if (len > slen - start)
-		len = slen - start;
-	substr = malloc(len + 1);
-	if (substr == NULL)
-		return (NULL);
-	substr[0] = '\0';
-	line_append(substr, s + start);
-	return (substr);
-}
