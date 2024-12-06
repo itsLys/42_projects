@@ -57,6 +57,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	if (s)
 	{
+		c = (char)c;
 		while (*s && *s != c)
 			s++;
 		if (*s == c)
