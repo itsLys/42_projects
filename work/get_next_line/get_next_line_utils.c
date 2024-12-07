@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/07 14:27:37 by ihajji            #+#    #+#             */
+/*   Updated: 2024/12/07 14:27:44 by ihajji           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-#include <stdio.h>
-#include <unistd.h>
 
 size_t	count_len_until(const char *s, char c)
 {
@@ -73,4 +83,3 @@ char	*join_reads(char const *s1, char const *s2)
 	line_append(s2, line);
 	return (line);
 }
-
