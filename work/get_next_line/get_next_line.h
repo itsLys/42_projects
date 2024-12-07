@@ -24,11 +24,10 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s);
+char	*find_chr(const char *s, int c);
+char	*join_reads(char const *s1, char const *s2);
+char	*dup_until(const char *s, char c);
+size_t	count_len_until(const char *s, char c);
 void	line_append(const char *src, char *dst);
-size_t	count_len(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif // !GET_NEXT_LINE_H

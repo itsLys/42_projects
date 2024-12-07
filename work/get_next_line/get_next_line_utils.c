@@ -2,28 +2,32 @@
 #include <stdio.h>
 #include <unistd.h>
 
-size_t	ft_strlen(const char *s)
+size_t	count_len_until(const char *s, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i])
-		i++;
+	if (s)
+	{
+		while (s[i] && s[i] != c)
+			i++;
+	}
 	return (i);
 }
 
-// implement dup until
-char	*strdup_until(const char *s)
+char	*dup_until(const char *s, char c)
 {
 	char	*dup;
 	int		i;
 
-	dup = malloc(ft_strlen(s) + 1);
+	dup = malloc(count_len_until(s, c) + 1);
 	if (!dup)
 		return (NULL);
 	i = 0;
-	while (*s)
+	while (*s && *s != c)
 		dup[i++] = *(s++);
+	if (*s && *s == c)
+		dup[i++] = c;
 	dup[i] = '\0';
 	return (dup);
 }
@@ -42,7 +46,7 @@ void	line_append(const char *src, char *dst)
 	}
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*find_chr(const char *s, int c)
 {
 	if (s)
 	{
@@ -53,5 +57,20 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)(s));
 	}
 	return (NULL);
+}
+
+char	*join_reads(char const *s1, char const *s2)
+{
+	size_t	total_size;
+	char	*line;
+
+	total_size = count_len_until(s1, 0) + count_len_until(s2, 0);
+	line = malloc(total_size + 1);
+	if (!line)
+		return (NULL);
+	line[0] = '\0';
+	line_append(s1, line);
+	line_append(s2, line);
+	return (line);
 }
 
