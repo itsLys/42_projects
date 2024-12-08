@@ -19,45 +19,9 @@ void	print_gnl(char *line)
 void t(void)
 {
 	printf("----------------------------------------\n");
-	int fd = open("f14.txt", O_RDONLY);
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
-	print_gnl(get_next_line(fd));
+	int fd = open("f15.txt", O_RDWR);
+	write(fd, "h", 1);
+	lseek(fd, 0, SEEK_SET);
 	print_gnl(get_next_line(fd));
 }
 
