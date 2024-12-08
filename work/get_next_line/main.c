@@ -6,7 +6,7 @@
 
 int main(void)
 {
-	printf("BUFFER_SIZE->		%d\n", BUFFER_SIZE);
+	printf("BUFFER_SIZE->		%lx\n", (long unsigned) BUFFER_SIZE);
 	printf("sizeof BUFFER_SIZE->	%lu\n", sizeof(BUFFER_SIZE));
 
 	int fd = open("file2.txt", O_RDWR);

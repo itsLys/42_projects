@@ -12,9 +12,8 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-char	*extract_line(char **last)
+static char	*extract_line(char **last)
 {
 	char	*tmp;
 
@@ -28,21 +27,21 @@ char	*extract_line(char **last)
 	return (NULL);
 }
 
-void	*clean_up(void **p)
+static void	*clean_up(void **p)
 {
 	free(*p);
 	*p = NULL;
 	return (NULL);
 }
 
-char	*read_buffer(int fd, char **last)
+static char	*read_buffer(int fd, char **last)
 {
 	ssize_t	bytes;
 	char	*line;
 	char	*buffer;
 
 	line = *last;
-	buffer = malloc((size_t) BUFFER_SIZE + 1);
+	buffer = malloc((unsigned int)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (clean_up((void **)last));
 	while (!find_chr(buffer, NL))
@@ -69,9 +68,9 @@ char	*get_next_line(int fd)
 	static char	*last;
 	char		*line;
 
-	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
+	line = NULL;
 	if (find_chr(last, NL))
 		line = extract_line(&last);
 	if (line)

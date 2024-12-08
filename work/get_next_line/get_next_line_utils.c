@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-size_t	count_len_until(const char *s, char c)
+static size_t	count_len_until(const char *s, char c)
 {
 	size_t	i;
 
@@ -23,6 +23,20 @@ size_t	count_len_until(const char *s, char c)
 			i++;
 	}
 	return (i);
+}
+
+static void	line_append(const char *src, char *dst)
+{
+	while (*dst)
+		dst++;
+	if (src)
+	{
+		while (*src && *src != '\n')
+			*(dst++) = *(src++);
+		if (*src)
+			*(dst++) = '\n';
+		*dst = '\0';
+	}
 }
 
 char	*dup_until(const char *s, char c)
@@ -40,20 +54,6 @@ char	*dup_until(const char *s, char c)
 		dup[i++] = c;
 	dup[i] = '\0';
 	return (dup);
-}
-
-void	line_append(const char *src, char *dst)
-{
-	while (*dst)
-		dst++;
-	if (src)
-	{
-		while (*src && *src != '\n')
-			*(dst++) = *(src++);
-		if (*src)
-			*(dst++) = '\n';
-		*dst = '\0';
-	}
 }
 
 char	*find_chr(const char *s, int c)
