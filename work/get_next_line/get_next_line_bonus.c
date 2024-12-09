@@ -12,6 +12,13 @@
 
 #include "get_next_line.h"
 
+void	*clean_up(void **p)
+{
+	free(*p);
+	*p = NULL;
+	return (NULL);
+}
+
 static char	*extract_line(char **last)
 {
 	char	*tmp;
@@ -23,13 +30,6 @@ static char	*extract_line(char **last)
 	*last = tmp;
 	if (find_chr(tmp, NL))
 		return (dup_until(*last, NL));
-	return (NULL);
-}
-
-static void	*clean_up(void **p)
-{
-	free(*p);
-	*p = NULL;
 	return (NULL);
 }
 

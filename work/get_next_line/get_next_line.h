@@ -27,5 +27,6 @@ char	*get_next_line(int fd);
 char	*find_chr(const char *s, int c);
 char	*join_reads(char const *s1, char const *s2);
 char	*dup_until(const char *s, char c);
+void *clean_up(void **p);
 
 #endif // !GET_NEXT_LINE_H
