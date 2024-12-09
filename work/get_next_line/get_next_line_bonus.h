@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:45:10 by ihajji            #+#    #+#             */
-/*   Updated: 2024/12/03 12:19:00 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:49:40 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # define MAX_FD 1024
 # ifndef BUFFER_SIZE
@@ -27,5 +27,6 @@ char	*get_next_line(int fd);
 char	*find_chr(const char *s, int c);
 char	*join_reads(char const *s1, char const *s2);
 char	*dup_until(const char *s, char c);
+void	*clean_up(void **p);
 
-#endif // !GET_NEXT_LINE_H
+#endif // !GET_NEXT_LINE_BONUS_H

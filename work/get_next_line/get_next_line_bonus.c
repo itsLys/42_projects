@@ -25,8 +25,8 @@ static char	*extract_line(char **last)
 
 	tmp = dup_until(find_chr(*last, NL) + 1, 0);
 	if (!tmp)
-		return (NULL);
-	free(*last);
+		return (clean_up((void **)last));
+	clean_up((void **) last);
 	*last = tmp;
 	if (find_chr(tmp, NL))
 		return (dup_until(*last, NL));
@@ -55,7 +55,7 @@ static char	*read_buffer(int fd, char **last)
 		if (bytes == 0)
 			break ;
 	}
-	free(*last);
+	clean_up((void **) last);
 	*last = buffer;
 	if (!line[0])
 		return (clean_up((void **)last), clean_up((void **)&line));
@@ -64,10 +64,10 @@ static char	*read_buffer(int fd, char **last)
 
 char	*get_next_line(int fd)
 {
-	static char	*last[MAX_FD];
+	static char	*last[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX || fd > MAX_FD)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
 	line = NULL;
 	if (find_chr(last[fd], NL))
