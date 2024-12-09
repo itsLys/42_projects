@@ -41,14 +41,15 @@ int main(void)
 	t(fd0);
 	t(fd4);
 	t(fd4);
-	t(fd4);
 	t(fd5);
 	t(fd6);
 	t(fd6);
+	t(fd4);
 	t(fd5);
 	t(fd1);
 	t(fd2);
 	t(fd3);
+	t(fd4);
 	t(fd2);
 	t(fd1);
 	t(fd5);

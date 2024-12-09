@@ -40,7 +40,7 @@ static char	*read_buffer(int fd, char **last)
 	char	*buffer;
 
 	line = *last;
-	buffer = malloc((unsigned int)BUFFER_SIZE + 1);
+	buffer = calloc((unsigned int)BUFFER_SIZE + 1, 1);
 	if (!buffer)
 		return (clean_up((void **)last));
 	while (!find_chr(buffer, NL))
