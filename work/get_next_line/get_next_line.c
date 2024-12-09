@@ -25,7 +25,7 @@ static char	*extract_line(char **last)
 
 	tmp = dup_until(find_chr(*last, NL) + 1, 0);
 	if (!tmp)
-		return (NULL);
+		return (clean_up((void **)last));
 	clean_up((void **) last);
 	*last = tmp;
 	if (find_chr(tmp, NL))
