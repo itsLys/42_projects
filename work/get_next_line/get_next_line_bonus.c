@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:26:40 by ihajji            #+#    #+#             */
-/*   Updated: 2024/12/07 14:48:17 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/12/10 15:24:33 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -74,16 +74,16 @@ void	*clean_up(void **p)
 
 char	*get_next_line(int fd)
 {
-	static char	*last;
+	static char	*last[MAX_FD];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
 	line = NULL;
-	if (find_chr(last, NL))
-		line = extract_line(&last);
+	if (find_chr(last[fd], NL))
+		line = extract_line(&last[fd]);
 	if (line)
 		return (line);
-	line = read_buffer(fd, &last);
+	line = read_buffer(fd, &last[fd]);
 	return (line);
 }
