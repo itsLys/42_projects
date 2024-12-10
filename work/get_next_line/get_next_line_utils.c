@@ -9,7 +9,6 @@
 /*   Updated: 2024/12/07 14:27:44 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 
 static size_t	count_len_until(const char *s, char c)

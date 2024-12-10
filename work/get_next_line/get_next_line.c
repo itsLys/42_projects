@@ -9,14 +9,18 @@
 /*   Updated: 2024/12/07 14:48:17 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 
-void	*clean_up(void **p)
+static void	*ft_calloc(size_t nmemb, size_t size)
 {
-	free(*p);
-	*p = NULL;
-	return (NULL);
+	char	*mem;
+
+	mem = malloc(nmemb * size);
+	if (!mem)
+		return (NULL);
+	while (size--)
+		mem[size] = 0;
+	return (mem);
 }
 
 static char	*extract_line(char **last)
@@ -40,7 +44,7 @@ static char	*read_buffer(int fd, char **last)
 	char	*buffer;
 
 	line = *last;
-	buffer = calloc((unsigned int)BUFFER_SIZE + 1, 1);
+	buffer = ft_calloc((unsigned int)BUFFER_SIZE + 1, 1);
 	if (!buffer)
 		return (clean_up((void **)last));
 	while (!find_chr(buffer, NL))
@@ -60,6 +64,13 @@ static char	*read_buffer(int fd, char **last)
 	if (!line[0])
 		return (clean_up((void **)last), clean_up((void **)&line));
 	return (line);
+}
+
+void	*clean_up(void **p)
+{
+	free(*p);
+	*p = NULL;
+	return (NULL);
 }
 
 char	*get_next_line(int fd)

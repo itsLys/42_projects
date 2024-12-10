@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:26:40 by ihajji            #+#    #+#             */
-/*   Updated: 2024/12/07 14:48:17 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/12/10 10:15:17 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "get_next_line_bonus.h"
 
-#include "get_next_line.h"
-
-void	*clean_up(void **p)
+static void	*ft_calloc(size_t nmemb, size_t size)
 {
-	free(*p);
-	*p = NULL;
-	return (NULL);
+	char	*mem;
+
+	mem = malloc(nmemb * size);
+	if (!mem)
+		return (NULL);
+	while (size--)
+		mem[size] = 0;
+	return (mem);
 }
 
 static char	*extract_line(char **last)
@@ -40,7 +44,7 @@ static char	*read_buffer(int fd, char **last)
 	char	*buffer;
 
 	line = *last;
-	buffer = calloc((unsigned int)BUFFER_SIZE + 1, 1);
+	buffer = ft_calloc((unsigned int)BUFFER_SIZE + 1, 1);
 	if (!buffer)
 		return (clean_up((void **)last));
 	while (!find_chr(buffer, NL))
@@ -62,9 +66,16 @@ static char	*read_buffer(int fd, char **last)
 	return (line);
 }
 
+void	*clean_up(void **p)
+{
+	free(*p);
+	*p = NULL;
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*last[1024];
+	static char	*last[MAX_FD];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
