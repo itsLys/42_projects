@@ -6,7 +6,7 @@
 /*   By: ihajji <ihajji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:26:40 by ihajji            #+#    #+#             */
-/*   Updated: 2024/12/07 14:48:17 by ihajji           ###   ########.fr       */
+/*   Updated: 2024/12/10 14:02:27 by ihajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -27,6 +27,7 @@ static char	*extract_line(char **last)
 {
 	char	*tmp;
 
+	
 	tmp = dup_until(find_chr(*last, NL) + 1, 0);
 	if (!tmp)
 		return (clean_up((void **)last));
@@ -68,6 +69,8 @@ static char	*read_buffer(int fd, char **last)
 
 void	*clean_up(void **p)
 {
+	if (!*p)
+		return (NULL);
 	free(*p);
 	*p = NULL;
 	return (NULL);

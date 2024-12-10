@@ -28,6 +28,5 @@ int main(void)
 	t(fd);
 	t(fd);
 	t(fd);
-
-
+	t(fd);
 }
