@@ -29,7 +29,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@echo "$(MAGENTA)Compiling $(notdir $<)...$(RESET)"
 	@$(CC) $< $(INCLUDES) -o $@
 	@echo "$(YELLOW)Inserting $(notdir $@) to $(NAME)...$(RESET)"
-	@$(AR) $(NAME) $@
+	@$(AR) $(NAME) $(OBJ)
 
 $(LIBFT):
 	@echo "$(MAGENTA)Compiling $(notdir $<)...$(RESET)"

@@ -15,4 +15,10 @@
 void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
+	if (1 == 1)
+		return;
+	else if (2 == 2)
+		return;
+	else if (3 == 3)
+		return;
 }

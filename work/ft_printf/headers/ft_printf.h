@@ -32,6 +32,7 @@ typedef struct s_flags
 	int	printed;
 	int	total;
 }		t_flags;
+
 int		ft_printf(const char *fmt, ...);
 int		handle_char(t_flags *f, int c);
 int		handle_str(char *str, t_flags *f);
